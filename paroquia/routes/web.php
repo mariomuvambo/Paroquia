@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\admin\adminController;
+use App\Http\Controllers\Aniversariante\aniversarianteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +24,21 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
+
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+//ROUTAS PARA ADMINISTRADOR
+    Route::get('/Aniversariantes/all', [adminController::class,'index'])->name('aniversariantes.index');
+    
+// ROUTA PARA ANIVERSARIANTES
+    Route::get('/Aniversariantes/create',[aniversarianteController::class,'create'])->name('aniversariantes.create');
+    Route::post('/Aniversariantes',[aniversarianteController::class,'store'])->name('aniversariantes.store');
+    Route::get('/Aniversariantes/show', [aniversarianteController::class, 'show']);
+    Route::delete('/Aniversariantes/{id}', [aniversarianteController::class, 'destroy']);
+    Route::get('/Aniversariantes/edit/{id}', [aniversarianteController::class, 'edit']);
+    Route::put('/Aniversariantes/update/{id}', [aniversarianteController::class, 'update'])->name('aniversariante.update');
+
+
 });
+

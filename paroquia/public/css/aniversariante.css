@@ -1,0 +1,64 @@
+.titulo{
+    text-align: center; 
+    font-size:25px; 
+    font-weight: bold;
+}
+
+#subtitulo ,.subtitulo1,.input-group-text, .form-label{
+    font-weight: bold;
+    
+}
+
+#subtitulo{
+    text-align: center; font-size: 25px; margin-bottom: 20px;font-weight: bold;
+    margin-top: 20px;
+}
+
+.subtitulo1{
+    font-size:20px; 
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+.contato{
+    margin-left: 30px;
+}
+.subtitulo{
+margin-top: 20px;
+}
+.input-group-text, .form-control{
+    margin-top: 5px;
+}
+.form-label{
+    display: flex;
+    margin-top: 5px;
+}
+.card-img-top{
+    display: flex;
+    width: 370px;
+    height: 250px;
+}
+
+.bnt_submit{
+
+    margin: 0px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+}
+
+.preview_img{
+    width: 100px;
+    height: 100px;
+}
+
+#form_delete{
+    display: inline-block;
+}
+.msg{
+
+    background-color: #d4d4d4;
+    color: #151515;
+    border: 1px solid #C3E6CB;
+    width: 100%;
+    margin-bottom: 0;
+    text-align: center;
+}
