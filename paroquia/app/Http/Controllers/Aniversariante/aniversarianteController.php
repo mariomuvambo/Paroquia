@@ -105,7 +105,7 @@ class aniversarianteController extends Controller
         $user = auth()->user();
         $aniversariantes = $user->aniversariantes;
         
-        // Pode passar os dados para uma view para exibição
+        // Passando dados para view
         return view('/Aniversariantes/show', ['aniversariantes' => $aniversariantes]);
 
 
@@ -176,8 +176,6 @@ class aniversarianteController extends Controller
                     // Atualizando o nome da imagem no array $data
                     $niver['image'] = $imageName;
                 }
-
-             
         
                 $niver->save();
         

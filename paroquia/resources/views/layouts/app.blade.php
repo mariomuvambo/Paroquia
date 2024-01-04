@@ -61,7 +61,7 @@
                             <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/Aniversariantes/all">all</a>
+                            <a class="nav-link" href="/Admin/aniversariante_all">all</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">Link</a>

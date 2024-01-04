@@ -6,9 +6,16 @@ use App\Http\Controllers\Aniversariante\aniversarianteController;
 use App\Http\Controllers\Controller;
 use App\Models\aniversariantes;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+
 
 class adminController extends Controller
 {
+    private aniversariantes $aniversariante;
+
+    public function __construct(){
+        $this->aniversariante = new aniversariantes();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -16,9 +23,10 @@ class adminController extends Controller
      */
     public function index()
     {
-        //
-        $lista = aniversariantes::all();
-        return view("/Aniversariantes/all", compact("lista"));
+        // 
+        
+        $lista = $this->aniversariante->all();
+        return view("/Admin/aniversariante_all", compact("lista"));
     }
 
     /**
@@ -59,10 +67,12 @@ class adminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(aniversariantes $aniversariante)
     {
         //
-        
+
+        return view("/Admin/edit",['aniversariante' =>$aniversariante]);
+       
     }
 
     /**
@@ -74,8 +84,43 @@ class adminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'name' => 'required',
+            'surname' => 'required',
+            'gender' => 'required',
+            'date_birth' => 'required',
+        ]);
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+    
+        $niver = Aniversariantes::find($id);
+    
+        if (!$niver) {
+            return redirect()->back()->with('msg', 'Registro não encontrado');
+        }
+    
+        $niver->name = $request->input('name');
+        $niver->surname = $request->input('surname');
+        $niver->gender = $request->input('gender');
+        $niver->date_birth = $request->input('date_birth');
+    
+        if ($request->hasFile('image') && $request->file('image')->isValid()) {
+            $requestImage = $request->image;
+            $extension = $requestImage->extension();
+            $imageName = md5($requestImage->getClientOriginalName() . '_' . time()) . "." . $extension;
+            $requestImage->move(public_path('img/foto_aniversario'), $imageName);
+            $niver->image = $imageName;
+        }
+    
+        if ($niver->save()) {
+            return redirect('/Admin/aniversariante_all')->with('msg', 'Atualizado com sucesso');
+        } else {
+            return redirect()->back()->with('msg', 'Erro ao atualizar');
+        }
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -86,7 +131,8 @@ class adminController extends Controller
     public function destroy($id)
     {
         //
-        aniversariantes::findorFail($id)->delete();
-        return redirect('/Aniversariantes/all')->with('msg','Aniversariante apagado com sucesso');
+        // var_dump('delete');
+        $this->aniversariante->where('id', $id)->delete();
+        return redirect('/Admin/aniversariante_all')->with('msg','Apagado com sucesso');
     }
 }

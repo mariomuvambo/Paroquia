@@ -29,7 +29,10 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 //ROUTAS PARA ADMINISTRADOR
-    Route::get('/Aniversariantes/all', [adminController::class,'index'])->name('aniversariantes.index');
+    Route::get('/Admin/aniversariante_all', [adminController::class,'index'])->name('Admin.index');
+    Route::get('/Admin/{aniversariante}/edit', [adminController::class, 'edit'])->name('Admin.edit');
+    Route::put('/Admin/{aniversariante}/update', [adminController::class, 'update'])->name('Admin.update');
+    Route::delete('/Admin/{aniversariante}', [adminController::class, 'destroy'])->name('Admin.destroy');
     
 // ROUTA PARA ANIVERSARIANTES
     Route::get('/Aniversariantes/create',[aniversarianteController::class,'create'])->name('aniversariantes.create');
