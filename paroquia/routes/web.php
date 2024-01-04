@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\adminController;
 use App\Http\Controllers\Aniversariante\aniversarianteController;
+use App\Http\Controllers\ministerioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +43,8 @@ Route::middleware([
     Route::get('/Aniversariantes/edit/{id}', [aniversarianteController::class, 'edit']);
     Route::put('/Aniversariantes/update/{id}', [aniversarianteController::class, 'update'])->name('aniversariante.update');
 
+// ROUTA PARA MINISTÉRIOS
 
+Route::get('/Ministerios/create', [ministerioController::class,'create'])->name('ministerio.create');
 });
 
