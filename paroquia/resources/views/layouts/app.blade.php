@@ -66,6 +66,10 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route ('ministerio.create') }}">Ministérios</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route ('User.show') }}">User</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                         </li>

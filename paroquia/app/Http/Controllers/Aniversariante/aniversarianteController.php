@@ -121,7 +121,7 @@ class aniversarianteController extends Controller
     {
         //
         $editar = aniversariantes::findOrFail($id);
-        return view('Aniversariantes.edit', compact('editar'));
+        return view('Aniversariantes.edit', compact('editar')); 
       
     }
 
