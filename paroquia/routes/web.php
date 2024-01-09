@@ -35,6 +35,7 @@ Route::middleware([
     Route::get('/User/show', [userController::class, 'index'])->name('User.show'); 
     Route::get('/User/{user}/edit', [userController::class, 'edit'])->name('users.edit');
     Route::put('/User/{user}/update', [userController::class, 'update'])->name('users.update');
+    Route::delete('/User/{user}', [userController::class, 'destroy'])->name('users.destroy');
 
 //ROUTAS PARA ADMINISTRADOR
     Route::get('/Admin/aniversariante_all', [adminController::class,'index'])->name('Admin.index');

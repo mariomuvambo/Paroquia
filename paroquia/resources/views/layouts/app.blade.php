@@ -34,7 +34,7 @@
     @livewireStyles
 
     <link rel="stylesheet" href="/css/aniversariante.css">
-    
+
     <link rel="stylesheet" href="/css/list.css">
 
 
@@ -60,16 +60,22 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
                         </li>
+                        @can('admin')
                         <li class="nav-item">
                             <a class="nav-link" href="/Admin/aniversariante_all">all</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route ('ministerio.create') }}">Ministérios</a>
                         </li>
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route ('User.show') }}">User</a>
                         </li>
+
+                        @elsecan('user')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route ('ministerio.create') }}">Ministérios</a>
+                        </li>
+                        @endcan
+
+
                         <li class="nav-item">
                             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                         </li>
@@ -105,24 +111,24 @@
         <!-- Page Content -->
         <main>
             <!-- {{ $slot }} -->
-             <div class="py-12">
+            <div class="py-12">
                 <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                         <!-- <x-welcome /> -->
                         <div class="container-fluid">
-                        <div class="row">
-                            @if(session('msg'))
-                            <p class="msg">{{session('msg')}}</p>
-                            @endif
+                            <div class="row">
+                                @if(session('msg'))
+                                <p class="msg">{{session('msg')}}</p>
+                                @endif
 
+                            </div>
                         </div>
+                        @yield('content')
                     </div>
-                    @yield('content')
                 </div>
-    </div>
-    </div>
+            </div>
 
-    </main>
+        </main>
     </div>
 
     @stack('modals')

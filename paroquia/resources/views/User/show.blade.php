@@ -21,23 +21,31 @@
         </tr>
       </thead>
       <tbody>
-        @foreach($user as $user)
+        @foreach($users as $user)
         <tr>
           <th scope="row">{{ $user->id }}</th>
           <td>{{ $user->name }}</td>
           <td>{{ $user->email }}</td>
           <td>Otto</td>
           <td>
-            <a href="{{ route('users.edit', ['user' => $user->id ]) }}" class="btn btn-warning" data-bs-toggle="modal"
-              data-bs-target="#exampleModal">Edit</a>
-            <a class="btn btn-danger">Danger</a>
+            <a href="{{ route('users.edit', ['user'=> $user->id])  }} " class="btn btn-warning">Edit</a>
+            
+            <form id="form_delete" action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST">
+              @csrf
+              @method('DELETE')
+              <button type="submit" class="btn btn-danger delete-btn">Delete</button>
+            </form>
+
           </td>
+
         </tr>
+
         @endforeach
+
       </tbody>
     </table>
   </div>
 
-  @include('User.edit')
+
   @endsection
 </x-app-layout>

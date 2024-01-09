@@ -21,9 +21,9 @@ class userController extends Controller
     {
         //
         
-        $user = $this->user->all();
+        $users = $this->user->all();
    
-        return view("/User/show", compact("user"));
+        return view("/User/show", compact("users"));
     }
 
     /**
@@ -67,9 +67,9 @@ class userController extends Controller
      */
     public function edit(User $user)
     {
+        return view("/User/edit", compact("user"));
 
-       return view("/User/edit",['user'=> $user]);
-
+    
     }
 
     /**
@@ -82,11 +82,11 @@ class userController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $update = $this->user->where('id', $id)->update($request->all());
+        $update = $this->user->where('id', $id)->update($request->except('_token', '_method', 'role'));
 
 
         if ($update) {
-            return redirect()->back()->with('msg','Editado com sucesoo');
+            return redirect('/User/show')->with('msg','Editado com sucesoo');
         }
         return redirect()->back()->with('msg','erro');
     }
@@ -100,5 +100,7 @@ class userController extends Controller
     public function destroy($id)
     {
         //
+        $this ->user->where('id', $id)->delete()->except('user_id');
+        return redirect('/User/show')->with('msg','Apagado com sucesso');
     }
 }
