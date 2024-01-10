@@ -4,14 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class userController extends Controller
+class contactController extends Controller
 {
-    private User $user;
 
-    public function __construct(User $user){
-        $this->user = $user;
-    }
+
     /**
      * Display a listing of the resource.
      *
@@ -20,10 +18,6 @@ class userController extends Controller
     public function index()
     {
         //
-        
-        $users = $this->user->all();
-   
-        return view("/User/show", compact("users"));
     }
 
     /**
@@ -34,6 +28,11 @@ class userController extends Controller
     public function create()
     {
         //
+  
+
+        return view ('/Contact/create');
+
+   
     }
 
     /**
@@ -56,7 +55,7 @@ class userController extends Controller
     public function show($id)
     {
         //
-       
+
     }
 
     /**
@@ -65,11 +64,9 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        return view("/User/edit", compact("user"));
-
-    
+        //
     }
 
     /**
@@ -82,13 +79,6 @@ class userController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $update = $this->user->where('id', $id)->update($request->except('_token', '_method', 'role'));
-
-
-        if ($update) {
-            return redirect('/User/show')->with('msg','Editado com sucesoo');
-        }
-        return redirect()->back()->with('msg','erro');
     }
 
     /**
@@ -100,8 +90,5 @@ class userController extends Controller
     public function destroy($id)
     {
         //
-        
-        $this ->user->where('id', $id)->delete();
-        return redirect('/User/show')->with('msg','Apagado com sucesso');
     }
 }

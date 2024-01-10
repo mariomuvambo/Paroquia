@@ -21,12 +21,14 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"
         integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 
-
-
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
+    <!-- Contact Us -->
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+   
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -57,10 +59,11 @@
 
 
                     <ul class="nav justify-content-center">
+                       
+                        @can('admin')
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
                         </li>
-                        @can('admin')
                         <li class="nav-item">
                             <a class="nav-link" href="/Admin/aniversariante_all">all</a>
                         </li>
@@ -68,8 +71,11 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route ('User.show') }}">User</a>
                         </li>
-
+                        
                         @elsecan('user')
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route ('ministerio.create') }}">Ministérios</a>
                         </li>
@@ -99,6 +105,11 @@
                                     <span class="visually-hidden">unread messages</span>
                                 </span></a>
                         </li>
+                        @can('user')
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route ('contact.create') }}">Contact Us</a>
+                        </li>
+                        @endcan
 
                     </ul>
 
@@ -140,6 +151,11 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
+
+    <!-- CONTACT US -->
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
 
 </body>
 

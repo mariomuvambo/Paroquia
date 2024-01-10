@@ -44,8 +44,6 @@ class aniversarianteController extends Controller
     public function store(Request $request)
     {
         //
-
-
         $user = Auth::user();
  
         //Validar os dados necessários para o preenchimento na base de dados

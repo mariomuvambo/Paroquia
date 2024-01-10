@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\admin\adminController;
 use App\Http\Controllers\Aniversariante\aniversarianteController;
+use App\Http\Controllers\contactController;
 use App\Http\Controllers\ministerioController;
 use App\Http\Controllers\userController;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +27,6 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
@@ -54,8 +54,13 @@ Route::middleware([
     Route::resource('Aniversariantes', aniversarianteController::class);
 
 // ROUTA PARA MINISTÉRIOS
-
 Route::get('/Ministerios/create', [ministerioController::class,'create'])->name('ministerio.create');
+
+/* Conctat Us */
+    Route::get('Contact/create', [contactController::class, 'create'])->name('contact.create');
+    Route::get('Contact/store', [contactController::class, 'store'])->name('contact.store');
+
+    
 });
 
 
