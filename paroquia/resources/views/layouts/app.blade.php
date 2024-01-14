@@ -25,10 +25,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
-    <!-- Contact Us -->
 
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
-   
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -61,12 +58,20 @@
                     <ul class="nav justify-content-center">
                        
                         @can('admin')
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
+                        <li class="nav-item"><a class="nav-link active" aria-current="page" href="/dashboard">Home</a></li>
+                                          <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-expanded="false">Ministérios</a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{{ route ('ministerio.create') }}">Adicionar</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/Ministerios/listaMinisterio">Listar Ministérios</a></li>
+                            </ul>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/Admin/aniversariante_all">all</a>
-                        </li>
+
+                        <!-- <li class="nav-item">
+                            <a class="nav-link" href="/Admin/aniversariante_all">Todos aniversariantes</a>
+                        </li> -->
 
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route ('User.show') }}">User</a>
@@ -76,24 +81,27 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route ('ministerio.create') }}">Ministérios</a>
-                        </li>
+                      
                         @endcan
-
 
                         <li class="nav-item">
                             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
-                                aria-expanded="false">Aniversariante</a>
+                                aria-expanded="false">Aniversariantes</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/Aniversariantes/create">Adicionar</a></li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
+                                <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="/Aniversariantes/show">Registados</a></li>
+                               
+                              
+                                @can('admin')
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="/Admin/aniversariante_all">Todos aniversariantes</a>
+                                @endcan
+                        </li>
+
                             </ul>
                         </li>
 
@@ -107,7 +115,7 @@
                         </li>
                         @can('user')
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route ('contact.create') }}">Contact Us</a>
+                            <a class="nav-link" href="{{ route ('contact.create') }}">Contact Us</a> 
                         </li>
                         @endcan
 
@@ -152,10 +160,6 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
         crossorigin="anonymous"></script>
 
-    <!-- CONTACT US -->
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    
 
 </body>
 

@@ -3,10 +3,10 @@
     @section('title', 'Listagem dos Aniversariante')
     @section('content')
 
-       <div class="container">
+    <div class="container">
 
         <div>
-            <h2 id="subtitulo">Registo do aniversariante</h2>
+            <h2 id="subtitulo">Todos aniversariantes</h2>
         </div>
         <hr style="margin-bottom: 15px;">
 
@@ -21,7 +21,7 @@
                         <p class="card-date">Data de aniversario: {{$list->date_birth}}</p>
 
                         <a href="/Aniversariantes/edit/{{ $list ->id }}" class="btn btn-primary">Editar</a>
-                        
+
                         <form id="form_delete" action="/Aniversariantes/ {{$list->id }}" method="POST">
                             @csrf
                             @method('DELETE')
@@ -35,6 +35,22 @@
             </div>
             @endforeach
         </div>
+
+
+        
+
+
+
+
+
+
+
+
+
+
+        
     </div>
+
+
     @endsection
 </x-app-layout>

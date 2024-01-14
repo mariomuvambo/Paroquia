@@ -5,6 +5,7 @@ use App\Http\Controllers\Aniversariante\aniversarianteController;
 use App\Http\Controllers\contactController;
 use App\Http\Controllers\ministerioController;
 use App\Http\Controllers\userController;
+use App\Http\Controllers\userMinisterioController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,19 +49,30 @@ Route::middleware([
     // Route::post('/Aniversariantes',[aniversarianteController::class,'store'])->name('aniversariantes.store');
     // Route::get('/Aniversariantes/show', [aniversarianteController::class, 'show']);
     // Route::delete('/Aniversariantes/{id}', [aniversarianteController::class, 'destroy']);
-    // Route::get('/Aniversariantes/edit/{id}', [aniversarianteController::class, 'edit']);
-    // Route::put('/Aniversariantes/update/{id}', [aniversarianteController::class, 'update'])->name('aniversariante.update');
+    Route::get('/Aniversariantes/edit/{id}', [aniversarianteController::class, 'edit']);
+    Route::put('/Aniversariantes/update/{id}', [aniversarianteController::class, 'update'])->name('aniversariante.update');
  /* USANDO RESOURCE PARA CRUD COMPLETO */
     Route::resource('Aniversariantes', aniversarianteController::class);
 
 // ROUTA PARA MINISTÉRIOS
-Route::get('/Ministerios/create', [ministerioController::class,'create'])->name('ministerio.create');
+ 
+    Route::get('/Ministerios/addMinisterio', [ministerioController::class, 'create'])->name('ministerio.create');
+    Route::post('/Ministerios', [ministerioController::class, 'store'])->name('ministerio.store');
+    Route::get('/Ministerios/listaMinisterio', [ministerioController::class, 'index'])->name('ministerio.index');
+    Route::delete('/Ministerios/{id}', [ministerioController::class, 'destroy'])->name('ministerio.destroy');
+    Route::get('/Ministerios/{id}/editarMinisterios', [ministerioController::class, 'edit'])->name('ministerio.edit');
+    Route::put('/Ministerios/{id}/update', [ministerioController::class, 'update'])->name('ministerio.update');
+    
+    /* User Ministerios */
 
-/* Conctat Us */
+      Route::get('Ministerios/RegistarUser', [userMinisterioController::class, 'create'])->name('ministerio.createUser');
+      Route::post('Ministerios', [userMinisterioController::class, 'store'])->name('ministerio.storeUser');
+    
+    /* Conctat Us */
+
     Route::get('Contact/create', [contactController::class, 'create'])->name('contact.create');
     Route::get('Contact/store', [contactController::class, 'store'])->name('contact.store');
 
-    
 });
 
 

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Aniversariante;
 
 use App\Http\Controllers\Controller;
-use App\Models\aniverariantes;
+
 use App\Models\aniversariantes;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\Request;

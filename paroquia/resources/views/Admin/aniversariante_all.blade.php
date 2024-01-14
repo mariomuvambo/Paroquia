@@ -3,10 +3,10 @@
     @section('title', 'Listagem dos Aniversariante')
     @section('content')
 
-       <div class="container">
+    <div class="container">
 
         <div>
-            <h2 id="subtitulo">Registo do aniversariante</h2>
+            <h2 id="subtitulo">Todos aniversariante</h2>
         </div>
         <hr style="margin-bottom: 15px;">
 
@@ -20,14 +20,16 @@
                         <p class="card-sexo">Sexo: {{$list->gender}}
                         <p class="card-date">Data de aniversario: {{$list->date_birth}}</p>
 
-                        <a href=" {{ route('Admin.edit', ['aniversariante' => $list->id  ]) }}"class="btn btn-primary">Editar</a>
-                   
-                        
-                     <form id="form_delete" action="{{ route('Admin.destroy', ['aniversariante' => $list->id]) }}" method="POST">
+                        <a href=" {{ route('Admin.edit', ['aniversariante' => $list->id  ]) }}"
+                            class="btn btn-primary">Editar</a> 
+
+
+                        <form id="form_delete" action="{{ route('Admin.destroy', ['aniversariante' => $list->id]) }}"
+                            method="POST">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger delete-btn">Apagar</button>
-                        </form> 
+                        </form>
                     </div>
                     <div class="card-footer">
                         <small class="text-body-secondary">Last updated 3 mins ago</small>
@@ -36,6 +38,8 @@
             </div>
             @endforeach
         </div>
+
+        
     </div>
     @endsection
 </x-app-layout>

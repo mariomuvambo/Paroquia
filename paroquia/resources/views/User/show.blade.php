@@ -31,18 +31,15 @@
             <a  class="btn btn-warning"
             data-bs-toggle="modal" data-bs-target="#exampleModal"
             >Edit</a>
-            
-
           
-
-            <form id="form_delete" action="{{ route('users.destroy', ['user' => $user->id]) }}" method="POST">
+            <form id="form_delete" action="{{ route('users.destroy', ['user' => $user->id]) }}" 
+            method="POST">
               @csrf
               @method('DELETE')
               <button type="submit" class="btn btn-danger delete-btn">Delete</button>
             </form>
 
           </td>
-
         </tr>
 
         @endforeach

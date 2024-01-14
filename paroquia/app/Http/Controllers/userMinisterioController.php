@@ -2,16 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
+use App\Models\Ministerio;
+use App\Models\UserMinisterio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
-class userController extends Controller
+class userMinisterioController extends Controller
 {
-    private User $user;
-
-    public function __construct(User $user){
-        $this->user = $user;
-    }
     /**
      * Display a listing of the resource.
      *
@@ -20,10 +17,6 @@ class userController extends Controller
     public function index()
     {
         //
-        
-        $users = $this->user->all();
-   
-        return view("/User/show", compact("users"));
     }
 
     /**
@@ -33,7 +26,9 @@ class userController extends Controller
      */
     public function create()
     {
-        //
+        // Retonar apenas dados do nameMinister
+        $registoSelect = Ministerio::all();
+        return view('/Ministerios.RegistarUser', compact('registoSelect'));
     }
 
     /**
@@ -45,6 +40,28 @@ class userController extends Controller
     public function store(Request $request)
     {
         //
+        $validator = Validator::make($request ->all(),[
+            'selecioneMinisterio'=>'required',
+            'nome'=>'required',
+            'apelido'=>'required',
+            'contacto'=>'required',
+        ]); 
+        if ($validator->fails()){
+            return redirect()->back();
+        }
+
+       UserMinisterio::create([
+            'selecioneMinisterio' =>$request->input('selecioneMinisterio'),
+            'nome'=>$request->input('nome'),
+            'apelido'=>$request->input('apelido'),
+            'contacto'=>$request->input('contacto')
+        ]);
+        return redirect("/Ministerios/RegistarUser")->with('msg', 'Gravado com sucesso');
+
+
+      
+
+
     }
 
     /**
@@ -56,7 +73,6 @@ class userController extends Controller
     public function show($id)
     {
         //
-       
     }
 
     /**
@@ -65,10 +81,9 @@ class userController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        return view("/User/edit", compact("user"));
-
+        //
     }
 
     /**
@@ -81,13 +96,6 @@ class userController extends Controller
     public function update(Request $request, $id)
     {
         //
-        $update = $this->user->where('id', $id)->update($request->except('_token', '_method', 'role'));
-
-
-        if ($update) {
-            return redirect('/User/show')->with('msg','Editado com sucesoo');
-        }
-        return redirect()->back()->with('msg','erro');
     }
 
     /**
@@ -99,8 +107,5 @@ class userController extends Controller
     public function destroy($id)
     {
         //
-        
-        $this ->user->where('id', $id)->delete();
-        return redirect('/User/show')->with('msg','Apagado com sucesso');
     }
 }
