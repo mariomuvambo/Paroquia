@@ -56,10 +56,16 @@ Route::middleware([
 
 // ROUTA PARA MINISTÉRIOS
     Route::get('/Ministerios/addMinisterios', [adminMinisterioController::class, 'create'])->name('adminministerios.create');
-    Route::post('/Ministerios', [adminMinisterioController::class, 'store'])->name('adminministerios.store');
+    Route::post('Ministerios/addMinisterio', [adminMinisterioController::class, 'store'])->name('adminministerios.store');
+    Route::get('/Ministerios/listaMinisterio', [adminMinisterioController::class, 'index'])->name('adminministerios.index');
+    Route::delete('/Ministerios/{id}', [adminMinisterioController::class, 'destroy'])->name('adminministerios.destroy');
+    Route::get('/Ministerios/{id}/editarMinisterios', [adminMinisterioController::class, 'edit'])->name('adminministerios.edit');
+    Route::put('/Ministerios/{id}/update', [adminMinisterioController::class, 'update'])->name('adminministerios.update');
+
+
     /* User Ministerios */
       Route::get('Ministerios/RegistarUser', [userMinisterioController::class, 'create'])->name('ministerio.createUser');
-      Route::post('Ministerios', [userMinisterioController::class, 'store'])->name('ministerio.storeUser');
+      Route::post('Ministerios/RegistarUser', [userMinisterioController::class, 'store'])->name('ministerio.storeUser');
     
     /* Conctat Us */
     Route::get('Contact/create', [contactController::class, 'create'])->name('contact.create');

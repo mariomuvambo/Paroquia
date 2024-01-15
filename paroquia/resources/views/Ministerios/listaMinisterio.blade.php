@@ -14,15 +14,15 @@
             <div class="col-sm-6 mb-3 mb-sm-0">
                 <div class="card text-end">
                     <div class="card-body">
-                        <h5 class="card-title">{{$lista->nameMinister}}</h5>
+                        <h5 class="card-title" style="font-weight: bold;">{{$lista->nameMinister}}</h5>
                         <p class="card-text">{{$lista->finalidade}}</p>
                     
-                        <a href="{{ route('ministerio.edit', ['id' => $lista->id]) }}" class="btn 
+                        <a href="{{ route('adminministerios.edit', ['id' => $lista->id]) }}" class="btn 
                         btn-primary details-btn">
                             Editar
                         </a>
 
-                        <form id="form_delete" action="{{ route('ministerio.destroy', ['id' => $lista->id]) }}"
+                        <form id="form_delete" action="{{ route('adminministerios.destroy', ['id' => $lista->id]) }}"
                             method="POST">
                             @csrf
                             @method('DELETE')

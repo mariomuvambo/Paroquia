@@ -65,7 +65,7 @@
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ route('adminministerios.create') }}">Adicionar</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="">Listar Ministérios</a></li>
+                                <li><a class="dropdown-item" href="{{ route('adminministerios.index') }}">Listar Ministérios</a></li>
                             </ul>
                         </li>
 

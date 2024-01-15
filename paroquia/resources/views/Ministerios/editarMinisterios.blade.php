@@ -9,8 +9,7 @@
     <hr style="margin-bottom: 15px;">
 
     <div class="container">
-        <form action="{{ route('ministerio.update', ['id' => $editar->id]) }}" method="POST"
-            enctype="multipart/form-data">
+        <form action="{{ route('adminministerios.update', ['id' => $editar->id]) }}"  method="POST"  enctype="multipart/form-data">
             @csrf
             @method('PUT')
 
@@ -20,6 +19,7 @@
                     <input type="text" class="form-control" placeholder="Novo ministério" aria-label="nameMinister"
                         name="nameMinister" id="nameMinister" value="{{ $editar->nameMinister }}">
                 </div>
+
             </div>
 
             <div class="row">
