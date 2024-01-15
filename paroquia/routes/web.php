@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\adminController;
 use App\Http\Controllers\Aniversariante\aniversarianteController;
 use App\Http\Controllers\contactController;
+use App\Http\Controllers\Ministerio\adminMinisterioController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\userMinisterioController;
 use Illuminate\Support\Facades\Route;
@@ -54,8 +55,8 @@ Route::middleware([
     Route::resource('Aniversariantes', aniversarianteController::class);
 
 // ROUTA PARA MINISTÉRIOS
- 
-    
+    Route::get('/Ministerios/addMinisterios', [adminMinisterioController::class, 'create'])->name('adminministerios.create');
+    Route::post('/Ministerios', [adminMinisterioController::class, 'store'])->name('adminministerios.store');
     /* User Ministerios */
       Route::get('Ministerios/RegistarUser', [userMinisterioController::class, 'create'])->name('ministerio.createUser');
       Route::post('Ministerios', [userMinisterioController::class, 'store'])->name('ministerio.storeUser');

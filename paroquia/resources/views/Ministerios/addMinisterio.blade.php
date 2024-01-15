@@ -9,7 +9,7 @@
     <hr style="margin-bottom: 15px;">
 
     <div class="container">
-        <form action="{{ route('ministerio.store') }}" method="post" >
+        <form action="" method="post" >
             @csrf
               <div class="row">
                 <div class="col-5">
