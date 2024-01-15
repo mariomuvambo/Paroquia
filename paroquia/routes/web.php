@@ -3,7 +3,6 @@
 use App\Http\Controllers\admin\adminController;
 use App\Http\Controllers\Aniversariante\aniversarianteController;
 use App\Http\Controllers\contactController;
-use App\Http\Controllers\ministerioController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\userMinisterioController;
 use Illuminate\Support\Facades\Route;
@@ -56,20 +55,12 @@ Route::middleware([
 
 // ROUTA PARA MINISTÉRIOS
  
-    Route::get('/Ministerios/addMinisterio', [ministerioController::class, 'create'])->name('ministerio.create');
-    Route::post('/Ministerios', [ministerioController::class, 'store'])->name('ministerio.store');
-    Route::get('/Ministerios/listaMinisterio', [ministerioController::class, 'index'])->name('ministerio.index');
-    Route::delete('/Ministerios/{id}', [ministerioController::class, 'destroy'])->name('ministerio.destroy');
-    Route::get('/Ministerios/{id}/editarMinisterios', [ministerioController::class, 'edit'])->name('ministerio.edit');
-    Route::put('/Ministerios/{id}/update', [ministerioController::class, 'update'])->name('ministerio.update');
     
     /* User Ministerios */
-
       Route::get('Ministerios/RegistarUser', [userMinisterioController::class, 'create'])->name('ministerio.createUser');
       Route::post('Ministerios', [userMinisterioController::class, 'store'])->name('ministerio.storeUser');
     
     /* Conctat Us */
-
     Route::get('Contact/create', [contactController::class, 'create'])->name('contact.create');
     Route::get('Contact/store', [contactController::class, 'store'])->name('contact.store');
 

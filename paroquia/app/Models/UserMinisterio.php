@@ -13,7 +13,11 @@ class UserMinisterio extends Model
         'selecioneMinisterio',
         'nome',
         'apelido',
-        'contacto'       
+        'contacto',
+        'user_id'       
     ];
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
 
 }

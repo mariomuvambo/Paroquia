@@ -64,4 +64,8 @@ class User extends Authenticatable
     public function aniversariantes(){
         return $this->hasMany('App\Models\aniversariantes');
     }
+
+    public function UserMinisterio(){
+        return $this->hasMany('App\Models\UserMinisterio');
+    }
 }

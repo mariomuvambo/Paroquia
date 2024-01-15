@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Ministerio;
 use App\Models\UserMinisterio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
 class userMinisterioController extends Controller
@@ -40,6 +41,7 @@ class userMinisterioController extends Controller
     public function store(Request $request)
     {
         //
+        $user = Auth::user();
         $validator = Validator::make($request ->all(),[
             'selecioneMinisterio'=>'required',
             'nome'=>'required',
@@ -54,7 +56,9 @@ class userMinisterioController extends Controller
             'selecioneMinisterio' =>$request->input('selecioneMinisterio'),
             'nome'=>$request->input('nome'),
             'apelido'=>$request->input('apelido'),
-            'contacto'=>$request->input('contacto')
+            'contacto'=>$request->input('contacto'),
+            'user_id' => $user->id
+
         ]);
         return redirect("/Ministerios/RegistarUser")->with('msg', 'Gravado com sucesso');
 

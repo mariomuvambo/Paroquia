@@ -9,14 +9,13 @@
     <hr style="margin-bottom: 15px;">
 
     <div class="container">
-        <form action="{{ route('ministerio.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('ministerio.store') }}" method="post" >
             @csrf
-            @method('POST')
-            <div class="row">
+              <div class="row">
                 <div class="col-5">
                     <label class="form-label">Adicionar Ministério</label>
                     <input type="text" class="form-control" placeholder="Novo ministério" aria-label="nameMinister"
-                        name="nameMinister" id="nameMinister" value="">
+                        name="nameMinister" id="nameMinister" >
                 </div>
 
             </div>
@@ -46,7 +45,7 @@
                 <div class="col-5">
                     <label for="exampleFormControlTextarea1" class="form-label">Tarefas dos sectores em geral</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" 
-                    name="tarefa_sector_geral" id="tarefa_sector_geral">   {{ old('tarefa_sector_geral',) }}</textarea>
+                    name="tarefa_sector_geral" id="tarefa_sector_geral"></textarea>
                     
                 </div>
         
