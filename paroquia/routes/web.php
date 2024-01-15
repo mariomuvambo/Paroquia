@@ -66,7 +66,8 @@ Route::middleware([
     /* User Ministerios */
       Route::get('Ministerios/RegistarUser', [userMinisterioController::class, 'create'])->name('ministerio.createUser');
       Route::post('Ministerios/RegistarUser', [userMinisterioController::class, 'store'])->name('ministerio.storeUser');
-    
+      Route::get('/Ministerios/user/show', [userMinisterioController::class, 'show'])->name('ministerio.show');
+
     /* Conctat Us */
     Route::get('Contact/create', [contactController::class, 'create'])->name('contact.create');
     Route::get('Contact/store', [contactController::class, 'store'])->name('contact.store');

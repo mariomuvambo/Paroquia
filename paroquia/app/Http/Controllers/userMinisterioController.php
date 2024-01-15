@@ -62,10 +62,6 @@ class userMinisterioController extends Controller
         ]);
         return redirect("/Ministerios/RegistarUser")->with('msg', 'Gravado com sucesso');
 
-
-      
-
-
     }
 
     /**
@@ -74,9 +70,13 @@ class userMinisterioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
+
+        
+        // Passando dados para view
+        return view('/Ministerios/user/show');
     }
 
     /**
