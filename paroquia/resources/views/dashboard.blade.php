@@ -116,7 +116,7 @@
                 <h5 class="card-title">Special title treatment</h5>
                 <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                 <a href="{{ route('ministerio.createUser') }}" class="btn btn-primary">Registar-se</a>
-                <a href="{{ route('ministerio.show') }}" class="btn btn-info">Detalhes</a>
+                <a href="{{ route('ministerio.show') }}" class="btn btn-info">Registados</a>
             </div>
             <div class="card-footer text-body-secondary">
                 2 days ago

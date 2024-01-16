@@ -26,7 +26,9 @@
                         btn-primary details-btn">
                             Editar
                         </a>
-                        
+
+                        <a href=" {{ route('adminministerios.show') }} " class="btn 
+                        btn-secondary details-btn"> Detalhes</a>                      
                     </div>
                   
                 </div>

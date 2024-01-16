@@ -61,7 +61,7 @@ Route::middleware([
     Route::delete('/Ministerios/{id}', [adminMinisterioController::class, 'destroy'])->name('adminministerios.destroy');
     Route::get('/Ministerios/{id}/editarMinisterios', [adminMinisterioController::class, 'edit'])->name('adminministerios.edit');
     Route::put('/Ministerios/{id}/update', [adminMinisterioController::class, 'update'])->name('adminministerios.update');
-
+    Route::get('/Ministerios/showMinisterios', [adminMinisterioController::class, 'show'])->name('adminministerios.show');
 
     /* User Ministerios */
       Route::get('Ministerios/RegistarUser', [userMinisterioController::class, 'create'])->name('ministerio.createUser');
@@ -69,6 +69,8 @@ Route::middleware([
       Route::get('/Ministerios/user/show', [userMinisterioController::class, 'show'])->name('ministerio.show');
       Route::get('/Ministerios/user/{id}/edit', [userMinisterioController::class, 'edit'])->name('ministerio.edit');
       Route::put('/Ministerios/user/{id}/update', [userMinisterioController::class, 'update'])->name('ministerio.update');
+ 
+
     /* Conctat Us */
     Route::get('Contact/create', [contactController::class, 'create'])->name('contact.create');
     Route::get('Contact/store', [contactController::class, 'store'])->name('contact.store');
