@@ -7,6 +7,7 @@ use App\Models\UserMinisterio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 
 class userMinisterioController extends Controller
 {
@@ -88,10 +89,11 @@ class userMinisterioController extends Controller
      */
     public function edit($id)
     {
-        //
-        $editar = UserMinisterio::findOrFail($id);
-        return view('/Ministerios/user/edit', compact('editar')); 
+        $registoSelect = Ministerio::pluck('nameMinister');
 
+        $editar = UserMinisterio::findOrFail($id);
+    
+        return view('/Ministerios/user/edit', compact('editar','registoSelect')); 
 
     }
 
@@ -105,8 +107,26 @@ class userMinisterioController extends Controller
     public function update(Request $request, $id)
     {
         //
+        $validator = Validator::make($request ->all(),[
+            'selecioneMinisterio'=>'required',
+            'nome'=>'required',
+            'apelido'=>'required',
+            'contacto'=>'required',
+        ]); 
 
-    }
+        if ($validator->fails()){
+            return redirect()->back();
+        }
+
+
+        $update = UserMinisterio::where('id', $id)->update($request->except('_token', '_method'));
+
+        if ($update) {
+            return redirect('/Ministerios/user/show')->with('msg','Editado com sucesso');
+        }
+        return redirect()->back()->with('msg','erro');
+        
+   }
 
     /**
      * Remove the specified resource from storage.

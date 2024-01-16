@@ -14,13 +14,24 @@
     <div class="container">
         <form action=" {{ route('ministerio.update', ['id' => $editar->id]) }} " method="post">
             @csrf
+            @method('PUT')
             <div class="row">
 
                 <div class="col-6">
                     <label for="">Selecione o Ministério</label>
+    
+
                     <select class="form-select form-select-md" aria-label=".form-select-sm example"
                         name="selecioneMinisterio" id="selecioneMinisterio">
+
+                        @foreach($registoSelect as $nameMinister)
+                        <option value="{{ $nameMinister }}" {{ ($nameMinister =='INFORMATICA' ) ? 'selected' : '' }}>
+                            {{ $nameMinister }}
+                        </option>
+                        @endforeach
+
                     </select>
+
 
                 </div>
                 <div class="col-6">
@@ -49,7 +60,7 @@
                 <div class="col-3">
                     <label for="">Contacto</label>
                     <input type="number" class="form-control" placeholder="Apenas um contacto" aria-label="contacto"
-                        name="contacto" id="contacto" value="{{ $editar->contacto}}">>
+                        name="contacto" id="contacto" value="{{ $editar->contacto}}">
 
                 </div>
             </div>

@@ -18,7 +18,7 @@
                 <div class="card">
                     
                     <div class="card-body" style="text-align:center;">
-                        <h5 class="card-title" > <strong>** {{ $Userministerio->selecioneMinisterio }} ** </strong></h5>
+                        <h5 class="card-title" > <strong>{{ $Userministerio->selecioneMinisterio }}</strong></h5>
                         <p class="card-text">Nome: {{ $Userministerio->nome }} {{ $Userministerio->apelido }}</p>
                         <p class="card-text">Contacto: {{ $Userministerio->contacto }}</p>
 
