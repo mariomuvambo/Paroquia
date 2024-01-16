@@ -89,6 +89,10 @@ class userMinisterioController extends Controller
     public function edit($id)
     {
         //
+        $editar = UserMinisterio::findOrFail($id);
+        return view('/Ministerios/user/edit', compact('editar')); 
+
+
     }
 
     /**
@@ -101,6 +105,7 @@ class userMinisterioController extends Controller
     public function update(Request $request, $id)
     {
         //
+
     }
 
     /**
