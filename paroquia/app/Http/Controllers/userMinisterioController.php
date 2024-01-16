@@ -60,7 +60,7 @@ class userMinisterioController extends Controller
             'user_id' => $user->id
 
         ]);
-        return redirect("/Ministerios/RegistarUser")->with('msg', 'Gravado com sucesso');
+        return redirect("/Ministerios/user/show")->with('msg', 'Gravado com sucesso');
 
     }
 
@@ -72,11 +72,12 @@ class userMinisterioController extends Controller
      */
     public function show()
     {
-        //
-
-        
-        // Passando dados para view
-        return view('/Ministerios/user/show');
+         // Obtem todos os registros do usuario casdastrado no sistema
+         $user = auth()->user();
+         $Userministerio = $user->Userministerio;
+         
+         // Passando dados para view
+         return view('/Ministerios/user/show', ['Userministerio' => $Userministerio]);
     }
 
     /**

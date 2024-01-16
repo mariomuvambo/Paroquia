@@ -72,7 +72,9 @@ Route::middleware([
     Route::get('Contact/create', [contactController::class, 'create'])->name('contact.create');
     Route::get('Contact/store', [contactController::class, 'store'])->name('contact.store');
 
+
 });
 
 
 
+ 

@@ -31,7 +31,6 @@ class contactController extends Controller
   
 
         return view ('/Contact/create');
-
    
     }
 

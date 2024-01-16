@@ -8,6 +8,15 @@
     </div>
     <hr style="margin-bottom: 15px;">
 
+    <div class="container">
+
+        @foreach($Userministerio as $Userministerio)
+
+        <p>{{ $Userministerio->nome }}</p>
+
+        @endforeach
+    </div>
+
     @endsection
 
 </x-app-layout>
