@@ -12,14 +12,50 @@
 
     <div class="container">
         @foreach($detalhes as $detalhes)
-        <div class="alert alert-primary " role="alert">
-            <h4 class="alert-heading"> <strong>{{ $detalhes->nameMinister}}</strong></h4>
-            <p>Aww yeah, you successfully read this important alert message. This example text is going to run a bit
-                longer so that you can see how spacing within an alert works with this kind of content.</p>
-            <hr>
-            <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+        <div class="alert alert-light " role="alert">
+            <div class="alert alert-info" role="alert">
+                <h4 class="alert-heading"> <strong>{{ $detalhes->nameMinister}}</strong></h4>
+            </div>
+
+            <table class="table">
+                <thead class="table-secondary">
+                    <tr >
+                        <th scope="col">Finalidade</th>
+                        <th scope="col">{{ $detalhes->finalidade}}</th>
+                    </tr>
+                </thead>
+                <tbody class="table-secondary">
+                    <tr>
+                        <th scope="row">Tarefa de responsável do Ministério </th>
+                        <td>{{ $detalhes->tarefa_resp_minister}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Tarefa de responsável do Adjunto </th>
+                        <td>{{ $detalhes->tarefa_resp_adjunt}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Tarefa de responsável do Sector Geral </th>
+                        <td>{{ $detalhes->tarefa_sector_geral}}</td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Sectores do Ministério </th>
+                        <td>{{ $detalhes->sectores_minister}}</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
+
+        <hr>
+        <p class="mb-0">Date: 12.12.22</p>
         @endforeach
+
+
+
+
+
+        
+    </div>
+  
 
 
     </div>

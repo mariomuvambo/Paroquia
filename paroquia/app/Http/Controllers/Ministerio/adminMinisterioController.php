@@ -80,7 +80,7 @@ class adminMinisterioController extends Controller
     {
         //
         $detalhes = Ministerio::all();
-        dd($)
+
         return view ('/Ministerios/showMinisterios', compact('detalhes'));
     }
 
