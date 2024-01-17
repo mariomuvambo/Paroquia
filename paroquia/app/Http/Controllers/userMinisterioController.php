@@ -118,7 +118,6 @@ class userMinisterioController extends Controller
             return redirect()->back();
         }
 
-
         $update = UserMinisterio::where('id', $id)->update($request->except('_token', '_method'));
 
         if ($update) {
