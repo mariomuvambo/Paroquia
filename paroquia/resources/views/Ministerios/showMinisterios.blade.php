@@ -4,13 +4,23 @@
     @section('title', 'Detalhes')
     @section('content')
 
-    <div>
-        <h2 id="subtitulo">Detalhes</h2>
-    </div>
-
-    <hr style="margin-bottom: 15px;">
 
     <div class="container">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mx-auto" style="max-width: 600px; margin:20px;">
+                        <div class="card-header">
+                            <h6 class="font-weight-bold" style="float:left; font-size: 22px;"> <strong>Detalhes</strong> </h6>
+                            <a href ="{{ route('ministerio.createUser') }}" class="btn btn-sm btn-primary" style="float:right">Registar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
         @foreach($detalhes as $detalhes)
         <div class="alert alert-light " role="alert">
             <div class="alert alert-info" role="alert">
@@ -19,7 +29,7 @@
 
             <table class="table">
                 <thead class="table-secondary">
-                    <tr >
+                    <tr>
                         <th scope="col">Finalidade</th>
                         <th scope="col">{{ $detalhes->finalidade}}</th>
                     </tr>
@@ -49,15 +59,7 @@
         <p class="mb-0">Date: 12.12.22</p>
         @endforeach
 
-
-
-
-
-        
     </div>
-  
-
-
     </div>
 
     @endsection
