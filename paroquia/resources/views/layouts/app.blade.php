@@ -64,8 +64,9 @@
                                 aria-expanded="false">Ministérios</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ route('adminministerios.create') }}">Adicionar</a></li>
-                                <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="{{ route('adminministerios.index') }}">Listar Ministérios</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ route('adminministerios.show') }}">Detalhes do Ministérios</a></li>
                                 <li><a class="dropdown-item" href="{{ route('ministerio.show') }}">Registados nos Ministérios</a></li>
                             </ul>
                         </li>
