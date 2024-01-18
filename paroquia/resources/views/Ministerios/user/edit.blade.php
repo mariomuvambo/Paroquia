@@ -36,7 +36,7 @@
                 </div>
                 <div class="col-6">
                     <label for="">Detalhes dos Ministerio</label>
-                    <a href="" class="btn btn-primary" style="padding-left: 20px;">Detalhes</a>
+                    <a href="{{ route('adminministerios.show') }}" class="btn btn-primary" style="padding-left: 20px;">Detalhes</a>
                 </div>
 
             </div>
