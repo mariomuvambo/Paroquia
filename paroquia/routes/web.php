@@ -44,6 +44,7 @@ Route::middleware([
     Route::get('/Admin/{aniversariante}/edit', [adminController::class, 'edit'])->name('Admin.edit');
     Route::put('/Admin/{aniversariante}/update', [adminController::class, 'update'])->name('Admin.update');
     Route::delete('/Admin/{aniversariante}', [adminController::class, 'destroy'])->name('Admin.destroy');
+    Route::get('/Admin/show', [adminController::class, 'show'])->name('Admin.show');
     
 // ROUTA PARA ANIVERSARIANTES
     // Route::get('/Aniversariantes/create',[aniversarianteController::class,'create'])->name('aniversariantes.create');

@@ -80,5 +80,3 @@
     </div>
 
     @endsection
-
-</x-app-layout>

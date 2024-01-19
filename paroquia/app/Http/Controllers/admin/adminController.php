@@ -5,6 +5,8 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Aniversariante\aniversarianteController;
 use App\Http\Controllers\Controller;
 use App\Models\aniversariantes;
+use App\Models\Ministerio;
+use App\Models\UserMinisterio;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -56,9 +58,12 @@ class adminController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
         //
+        $ministerios = UserMinisterio::all();
+        return view ('Ministerios.listaRegistados',compact('ministerios'));
+        
     }
 
     /**
