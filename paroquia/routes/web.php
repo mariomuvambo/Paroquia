@@ -7,6 +7,7 @@ use App\Http\Controllers\Mail\ContactosController;
 use App\Http\Controllers\Ministerio\adminMinisterioController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\userMinisterioController;
+use App\Mail\ContactoMail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    Mail::to('mariomuvambo1@gmail.com')->send(new ContactoMail);
     return view('welcome');
 });
 
@@ -80,6 +82,7 @@ Route::middleware([
     /*MAIL*/
 
     Route::post('/send', [ContactosController::class, 'store'])->name('send.email');
+
 
 });
 
