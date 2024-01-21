@@ -53,6 +53,10 @@ class contactController extends Controller
             'subject'=>$request->input('subject'),
 
         ])); 
+        return redirect('/Contact/create')->with('msg','Enviado com sucesso!');
+
+
+        
 
     
     }
