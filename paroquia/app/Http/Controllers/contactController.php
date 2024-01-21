@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\ContactoMail;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class contactController extends Controller
 {
@@ -28,8 +30,6 @@ class contactController extends Controller
     public function create()
     {
         //
-  
-
         return view ('/Contact/create');
    
     }
@@ -43,6 +43,18 @@ class contactController extends Controller
     public function store(Request $request)
     {
         //
+        $user = auth()->user();
+        Mail::to($user)->send(new ContactoMail([
+            'fromName' =>$request->input('name'),
+            'fromSurname' =>$request->input('surname'),
+            'fromEmail' =>$request->input('email'),
+            'fromCell' =>$request->input('cell'),
+            'message' =>$request->input('message'),
+            'subject'=>$request->input('subject'),
+
+        ])); 
+
+    
     }
 
     /**

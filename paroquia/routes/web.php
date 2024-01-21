@@ -22,7 +22,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    Mail::to('mariomuvambo1@gmail.com')->send(new ContactoMail);
     return view('welcome');
 });
 
@@ -77,11 +76,10 @@ Route::middleware([
 
     /* Conctat Us */
     Route::get('Contact/create', [contactController::class, 'create'])->name('contact.create');
-    Route::get('Contact/store', [contactController::class, 'store'])->name('contact.store');
-
+    Route::post('Contact/store', [contactController::class, 'store'])->name('contact.store');
+    
     /*MAIL*/
 
-    Route::post('/send', [ContactosController::class, 'store'])->name('send.email');
 
 
 });
