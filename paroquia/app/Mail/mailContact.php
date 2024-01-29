@@ -4,6 +4,7 @@ namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
@@ -11,16 +12,15 @@ class MailContact extends Mailable
 {
     use Queueable, SerializesModels;
     
-    public $user;
-
+    public $data;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $user)
+    public function __construct($data)
     {
-        $this->user = $user;
+        $this->data = $data;
     }
 
     /**
@@ -30,7 +30,6 @@ class MailContact extends Mailable
      */
     public function build()
     {
-        return $this->subject('Email Contact')
-                    ->view('emails.contact');
+        return $this->subject('Contato do site')->view('emails.contact');
     }
 }

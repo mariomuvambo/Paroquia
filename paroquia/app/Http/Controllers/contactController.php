@@ -5,8 +5,6 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CreateUserRequest;
 use App\Mail\ContactoMail;
 use App\Mail\mailContact;
-use App\Models\User;
-use Http;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -34,8 +32,8 @@ class contactController extends Controller
     public function create()
     {
         //
-        return view ('/Contact/create');
-   
+        return view('/Contact/create');
+
     }
 
     /**
@@ -44,17 +42,15 @@ class contactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CreateUserRequest $request)
+
+    public function store(Request $request)
     {
-    
-        // Envio do e-mail de boas-vindas
-        $user = "mariomuvambo1@gmail.com"; // ou substitua por lógica para recuperar o usuário criado
-        Mail::to($user->email)->send(new mailContact($user));
+        
 
-        // Retorno ou redirecionamento após o envio do e-mail...\
-        return view("/Contact.create")->with('msg', 'Email Enviado com sucesso');
-
+   
     }
+
+
 
     /**
      * Display the specified resource.
@@ -101,4 +97,28 @@ class contactController extends Controller
     {
         //
     }
-}
+
+
+
+        public function sendEmail(Request $request)
+        {
+            // Validar o formulário, se necessário
+    
+            // Obter o usuário autenticado
+            $user = auth()->user();
+    
+            // Construir os dados para o email
+            $data = [
+                'name' => $user->name,
+                'email' => $user->email,
+                'message' => $request->input('message'),
+            ];
+    
+            // Enviar o email
+            Mail::to($user->email)->send(new mailContact($data));
+    
+            // Redirecionar de volta com uma mensagem de sucesso
+            return redirect()->back()->with('msg', 'Email enviado com sucesso!');
+        }
+    }
+    

@@ -7,7 +7,7 @@
         <h2 id="subtitulo">Contact Us</h2>
     </div>
     <hr style="margin-bottom: 15px;">
-    <form action="{{ route('contact.store') }}" method="post">
+    <form action="{{ route('contact.email') }}" method="post">
         @csrf
         <div class="container contact">
             <div class="row">
