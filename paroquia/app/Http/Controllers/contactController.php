@@ -42,18 +42,7 @@ class contactController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        $user = auth()->user();
-        Mail::to($user)->send(new ContactoMail([
-            'fromName' =>$request->input('name'),
-            'fromSurname' =>$request->input('surname'),
-            'fromEmail' =>$request->input('email'),
-            'fromCell' =>$request->input('cell'),
-            'message' =>$request->input('message'),
-            'subject'=>$request->input('subject'),
-
-        ])); 
-        return redirect('/Contact/create')->with('msg','Enviado com sucesso!');
+      return('ok');
 
     
     }
