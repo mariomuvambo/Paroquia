@@ -2,11 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreateUserRequest;
 use App\Mail\ContactoMail;
+use App\Mail\mailContact;
 use App\Models\User;
+use Http;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
 
 class contactController extends Controller
 {
@@ -40,11 +44,16 @@ class contactController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-      return('ok');
-
     
+        // Envio do e-mail de boas-vindas
+        $user = "mariomuvambo1@gmail.com"; // ou substitua por lógica para recuperar o usuário criado
+        Mail::to($user->email)->send(new mailContact($user));
+
+        // Retorno ou redirecionamento após o envio do e-mail...\
+        return view("/Contact.create")->with('msg', 'Email Enviado com sucesso');
+
     }
 
     /**
