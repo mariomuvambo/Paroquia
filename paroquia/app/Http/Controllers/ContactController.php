@@ -51,11 +51,12 @@ class ContactController extends Controller
     
         if ($send) {
             // Email sent successfully
-            dd('Email sent', $send);
+    
+            return view('/Contact/send-email')->with('msg', 'Email enviado com sucesso');
             
         } else {
             // Email failed to send
-            dd('Failed to send email');
+            return view('/Contact/send-email')->with('msg', 'Email nao enviado');
         }
     }
     
