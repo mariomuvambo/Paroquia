@@ -7,7 +7,7 @@
         <h2 id="subtitulo">Contact Us</h2>
     </div>
     <hr style="margin-bottom: 15px;">
-    <form action="{{ route('contact.email') }}" method="post">
+    <form action="{{ route('contact.sendEmail') }}" method="post">
         @csrf
         <div class="container contact">
             <div class="row">
@@ -43,21 +43,21 @@
                             <label class="control-label col-sm-2" for="email">Email:</label>
                             <div class="col-sm-10">
                                 <input type="email" class="form-control" id="email" placeholder="Enter email"
-                                    name="email" value="{{ Auth::user()->email}}">
+                                    name="email" >
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="cell">Phone:</label>
                             <div class="col-sm-10">
-                                <input type="number" class="form-control" id="cell" required>
+                                <input type="number" class="form-control" id="cell" name="cell">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-sm-2" for="message">message:</label>
                             <div class="col-sm-10">
-                                <textarea class="form-control" rows="5" id="message"></textarea>
+                                <textarea class="form-control" rows="5" name="message" id="message"></textarea>
                             </div>
                         </div>
                         <br>

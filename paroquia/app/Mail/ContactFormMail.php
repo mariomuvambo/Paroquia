@@ -3,24 +3,24 @@
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class MailContact extends Mailable
+class ContactFormMail extends Mailable
 {
     use Queueable, SerializesModels;
-    
-    public $data;
+
+    public $formData;
+
     /**
      * Create a new message instance.
      *
+     * @param array $formData
      * @return void
      */
-    public function __construct($data)
+    public function __construct(array $formData)
     {
-        $this->data = $data;
+        $this->formData = $formData;
     }
 
     /**
@@ -30,6 +30,7 @@ class MailContact extends Mailable
      */
     public function build()
     {
-        return $this->subject('Contato do site')->view('emails.contact');
+        return $this->markdown('emails.contact')
+                    ->subject('Contact Form Submission');
     }
 }
