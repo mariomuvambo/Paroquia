@@ -97,9 +97,6 @@ class contactController extends Controller
     {
         //
     }
-
-
-
         public function sendEmail(Request $request)
         {
             // Validar o formulário, se necessário
