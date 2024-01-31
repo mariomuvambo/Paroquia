@@ -75,12 +75,9 @@ Route::middleware([
  
 
     /* Conctat Us */
-    Route::get('/Contact/send-email', [ContactController::class, 'create'])->name('contact.create'); 
-    Route::post('/Contact/send-email', [ContactController::class, 'store'])->name('contact.sendEmail');
+    Route::get('/Contact/send-email', [::class, 'create'])->name('contact.create'); 
+    Route::post('/Contact/send-email', [::class, 'store'])->name('contact.sendEmail');
 
-
-
-    
     /*MAIL*/
 
 
