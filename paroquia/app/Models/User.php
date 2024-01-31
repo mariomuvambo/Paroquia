@@ -68,4 +68,8 @@ class User extends Authenticatable
     public function UserMinisterio(){
         return $this->hasMany('App\Models\UserMinisterio');
     }
+
+    public function contacto(){
+        return $this->hasOne(contacto::class);
+    }
 }
