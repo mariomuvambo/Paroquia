@@ -15,19 +15,26 @@ class ContactFormMail extends Mailable
     public $name;
     public $surname;
     public $phone;
+    public $email;
     public $message;
+
+   
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($name, $surname, $phone, $message)
+    public function __construct($name, $surname, $phone, $email,$message)
     {
         $this->name = $name;
         $this->surname = $surname;
         $this->phone = $phone;
-        $this->message = $message;
+        $this->email = $email;
+        $this->message = $message; 
+      
+
+
     }
 
     public function build()
@@ -37,6 +44,7 @@ class ContactFormMail extends Mailable
             'name' => $this->name,
             'surname' => $this->surname,
             'phone' => $this->phone,
+            'email' => $this->email,
             'message' => $this->message,
         ]);
     }

@@ -12,6 +12,7 @@ class contacto extends Model
         'name',
         'surname',
         'phone',
+        'email',
         'message'
     ];
 

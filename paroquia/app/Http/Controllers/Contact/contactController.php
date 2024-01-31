@@ -47,6 +47,7 @@ class contactController extends Controller
             'name'=>'required',
             'surname'=>'required',
             'phone'=>'required',
+            'email'=>'required',
             'message'=>'required',
         ]); 
        
@@ -55,6 +56,7 @@ class contactController extends Controller
             'name' =>$request->input('name'),
             'surname'=>$request->input('surname'),
             'phone'=>$request->input('phone'),
+            'email'=>$request->input('email'),
             'message'=>$request->input('message'),
         ]);
            // Obtenha o usuário logado
@@ -72,6 +74,7 @@ class contactController extends Controller
             $request->input('name'),
             $request->input('surname'),
             $request->input('phone'),
+            $request->input('email'),
             $request->input('message')
 
            ));

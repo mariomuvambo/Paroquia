@@ -71,7 +71,6 @@ Route::middleware([
       Route::get('/Ministerios/user/{id}/edit', [userMinisterioController::class, 'edit'])->name('ministerio.edit');
       Route::put('/Ministerios/user/{id}/update', [userMinisterioController::class, 'update'])->name('ministerio.update');
  
-
     /* Conctat Us */
     Route::get('/Contact/send-email',[contactController::class, 'create'])->name('contact.create'); 
     Route::post('/Contact/send-email', [contactController::class, 'store'])->name('contact.sendEmail');
