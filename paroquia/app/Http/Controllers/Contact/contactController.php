@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Contact;
 
 use App\Http\Controllers\Controller;
+use App\Mail\ContactFormMail;
 use App\Models\contacto;
 use Http;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
 
 class contactController extends Controller
 {
@@ -55,8 +57,26 @@ class contactController extends Controller
             'phone'=>$request->input('phone'),
             'message'=>$request->input('message'),
         ]);
+           // Obtenha o usuário logado
+           $user = auth()->user();
+
+           // Obtenha o endereço de e-mail do usuário logado
+           $userEmail = $user->email;
+   
+           // Endereço de e-mail para onde você quer enviar
+           $to = 'mariomuvambo1@gmail.com';
+
+        //    Mail::to([$userEmail, $to])->
+           // Envie o e-mail
+           Mail::to([$to])->send(new ContactFormMail(
+            $request->input('name'),
+            $request->input('surname'),
+            $request->input('phone'),
+            $request->input('message')
+
+           ));
         
-        return redirect("/Contact/send-email")->with('msg', 'Gravado com sucesso');
+          return redirect("/Contact/send-email")->with('msg', 'Gravado com sucesso e email enviado');
     }
 
     /**
