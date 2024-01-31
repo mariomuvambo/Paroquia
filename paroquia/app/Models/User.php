@@ -69,7 +69,7 @@ class User extends Authenticatable
         return $this->hasMany('App\Models\UserMinisterio');
     }
 
-    public function contacto(){
-        return $this->hasOne(contacto::class);
+    public function contactos(){
+        return $this->hasOne(contactos::class);
     }
 }

@@ -2,12 +2,10 @@
 
 use App\Http\Controllers\admin\adminController;
 use App\Http\Controllers\Aniversariante\aniversarianteController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ContactFormController;
+use App\Http\Controllers\Contact\contactController;
 use App\Http\Controllers\Ministerio\adminMinisterioController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\userMinisterioController;
-use App\Mail\ContactoMail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -75,8 +73,8 @@ Route::middleware([
  
 
     /* Conctat Us */
-    // Route::get('/Contact/send-email', [::class, 'create'])->name('contact.create'); 
-    // Route::post('/Contact/send-email', [::class, 'store'])->name('contact.sendEmail');
+    Route::get('/Contact/send-email',[contactController::class, 'create'])->name('contact.create'); 
+    Route::post('/Contact/send-email', [contactController::class, 'store'])->name('contact.sendEmail');
 
     /*MAIL*/
 
