@@ -79,9 +79,11 @@ Route::middleware([
 
 //   Inbox
 
-Route::get('/Inbox/read',[notifyAvisosController::class, 'index'])->name('inbox.read'); 
+        Route::get('/Inbox/read',[notifyAvisosController::class, 'index'])->name('inbox.read'); 
 
-Route::get('/Inbox/create',[notifyAvisosController::class, 'create'])->name('inbox.create'); 
+        Route::get('/Inbox/create',[notifyAvisosController::class, 'create'])->name('inbox.create'); 
+
+        Route::post('/Inbox/create',[notifyAvisosController::class, 'store'])->name('inbox.store'); 
 
 
 });

@@ -16,7 +16,7 @@ class notifyAvisos extends Model
         'warningTime',
         'description',
         'DateNotice',
-        'DateExecution'
+        'DateExecution',
     
-    ]
+    ];
 }

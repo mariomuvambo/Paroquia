@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Inbox;
 
 use App\Http\Controllers\Controller;
+use App\Models\notifyAvisos;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Validator;
 
 class notifyAvisosController extends Controller
 {
+    private notifyAvisos $notifyAvisos;
     /**
      * Display a listing of the resource.
      *
@@ -38,14 +42,39 @@ class notifyAvisosController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // 'title',
-        // 'Address',
-        // 'participants',
-        // 'warningTime',
-        // 'description',
-        // 'DateExecution',
-        // 'DateNotice'
+        
+        $validator = Validator::make($request->all(), [
+            'title' => 'required',
+            'Address' => 'required',
+            'participants' => 'required',
+            'warningTime' => 'required',
+            'description' => 'required',
+            'DateExecution' => 'required|date',
+            'DateNotice' => 'required|date',
+        ]);
+
+
+        $dateExecution = $request->input('DateExecution');
+        $dateNotice = $request->input('DateNotice');
+
+        if ($dateNotice >= $dateExecution) {
+            return response()->json(['msg' => 'A data de aviso deve ser inferior ou igual à data de execução'], Response::HTTP_UNPROCESSABLE_ENTITY);
+        }
+
+
+
+        notifyAvisos::create([
+            'title' =>$request->input('title'),
+            'Address'=>$request->input('Address'),
+            'participants'=>$request->input('participants'),
+            'warningTime'=>$request->input('warningTime'),
+            'description'=>$request->input('description'),
+            'DateExecution'=>$request->input('DateExecution'),
+            'DateNotice'=>$request->input('DateNotice'),
+        ]);
+
+        return redirect('/Inbox/create')->with('msg', 'Gravado com sucesso');
+
     }
 
     /**
