@@ -3,6 +3,7 @@
 use App\Http\Controllers\admin\adminController;
 use App\Http\Controllers\Aniversariante\aniversarianteController;
 use App\Http\Controllers\Contact\contactController;
+use App\Http\Controllers\Inbox\notifyAvisosController;
 use App\Http\Controllers\Ministerio\adminMinisterioController;
 use App\Http\Controllers\userController;
 use App\Http\Controllers\userMinisterioController;
@@ -78,7 +79,7 @@ Route::middleware([
 
 //   Inbox
 
-// Route::get('/Inbox/notify',[::class, 'create'])->name('contact.create'); 
+Route::get('/Inbox/create',[notifyAvisosController::class, 'create'])->name('inbox.create'); 
 
 
 });

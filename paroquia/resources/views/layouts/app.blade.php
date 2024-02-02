@@ -116,7 +116,7 @@
                                     <span class="visually-hidden">unread messages</span>
                                 </span></a>
                                 @elsecan('admin')
-                                <a href="/">Inbox</a>
+                                <a class="nav-link" href="{{route ('inbox.create')}}">Inbox</a>
                                 @endcan
 
                         </li>
