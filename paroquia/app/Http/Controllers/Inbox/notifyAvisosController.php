@@ -15,6 +15,8 @@ class notifyAvisosController extends Controller
     public function index()
     {
         //
+        return view("/Inbox.read");
+        
     }
 
     /**
@@ -37,7 +39,6 @@ class notifyAvisosController extends Controller
     public function store(Request $request)
     {
         //
-
         // 'title',
         // 'Address',
         // 'participants',
