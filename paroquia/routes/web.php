@@ -73,10 +73,12 @@ Route::middleware([
  
     /* Conctat Us */
     Route::get('/Contact/send-email',[contactController::class, 'create'])->name('contact.create'); 
+      /*MAIL*/
     Route::post('/Contact/send-email', [contactController::class, 'store'])->name('contact.sendEmail');
 
-    /*MAIL*/
+//   Inbox
 
+// Route::get('/Inbox/notify',[::class, 'create'])->name('contact.create'); 
 
 
 });
