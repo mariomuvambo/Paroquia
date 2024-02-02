@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string("Address");
             $table->string("participants");
             $table->string("warningTime");
-            $table->string("description");
-            $table->string("startDate");
-            $table->string("endDate");
+            $table->string("description"); 
+            $table->string("DateExecution");
+            $table->string("DateNotice");
             $table->timestamps();
         });
     }

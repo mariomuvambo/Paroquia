@@ -15,8 +15,8 @@ class notifyAvisos extends Model
         'participants',
         'warningTime',
         'description',
-        'startDate',
-        'endDate'
+        'DateNotice',
+        'DateExecution'
     
     ]
 }

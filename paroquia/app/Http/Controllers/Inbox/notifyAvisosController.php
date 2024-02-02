@@ -37,6 +37,14 @@ class notifyAvisosController extends Controller
     public function store(Request $request)
     {
         //
+
+        // 'title',
+        // 'Address',
+        // 'participants',
+        // 'warningTime',
+        // 'description',
+        // 'DateExecution',
+        // 'DateNotice'
     }
 
     /**
