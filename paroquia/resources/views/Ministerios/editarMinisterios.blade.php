@@ -26,8 +26,7 @@
                 <div class="col-5">
                     <label for="exampleFormControlTextarea1" class="form-label">Finalidade</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="finalidade"
-                        id="finalidade">
-                        {{ old('finalidade', $editar->finalidade) }}
+                        id="finalidade">{{ old('finalidade', $editar->finalidade) }}
                     </textarea>
                 </div>
 
@@ -36,8 +35,7 @@
                         do
                         Ministério</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="tarefa_resp_minister"
-                        id="tarefa_resp_minister">
-                        {{ old('tarefa_resp_minister', $editar->tarefa_resp_minister) }}
+                        id="tarefa_resp_minister">{{ old('tarefa_resp_minister', $editar->tarefa_resp_minister) }}
                     </textarea>
                 </div>
 
@@ -48,8 +46,7 @@
                     <label for="exampleFormControlTextarea1" class="form-label">Tarefas do responsável
                         adjunto</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="tarefa_resp_adjunt"
-                        id="tarefa_resp_adjunt">   
-                        {{ old('tarefa_resp_adjunt', $editar->tarefa_resp_adjunt) }}
+                        id="tarefa_resp_adjunt">{{ old('tarefa_resp_adjunt', $editar->tarefa_resp_adjunt) }}
                     </textarea>
                 </div>
 
@@ -57,8 +54,7 @@
                     <label for="exampleFormControlTextarea1" class="form-label">Tarefas dos sectores em
                         geral</label>
                     <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="tarefa_sector_geral"
-                        id="tarefa_sector_geral">
-                        {{ old('tarefa_sector_geral', $editar->tarefa_sector_geral) }}
+                        id="tarefa_sector_geral">{{ old('tarefa_sector_geral', $editar->tarefa_sector_geral) }}
                     </textarea>
 
                 </div>

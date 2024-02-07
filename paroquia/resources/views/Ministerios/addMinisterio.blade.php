@@ -1,5 +1,4 @@
 <x-app-layout>
-
     <x-slot name="header"> </x-slot>
     @section('title', 'Ministérios')
     @section('content')
@@ -80,3 +79,5 @@
     </div>
 
     @endsection
+
+</x-app-layout>
