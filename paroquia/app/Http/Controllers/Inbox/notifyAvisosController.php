@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Inbox;
 
 use App\Http\Controllers\Controller;
 use App\Models\notifyAvisos;
+use App\Notifications\UserAvisosNotify;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
@@ -61,11 +63,8 @@ class notifyAvisosController extends Controller
         $dateNotice = $request->input('DateNotice');
 
         if ($dateNotice >= $dateExecution) {
-            return redirect('/Inbox/read')->with('msg','A data de aviso deve ser inferior ou igual à data de execução');
+            return back()->with('msg','A data de aviso deve ser inferior ou igual à data de execução');
         }
-
-
-
         notifyAvisos::create([
             'title' =>$request->input('title'),
             'Address'=>$request->input('Address'),
@@ -124,4 +123,18 @@ class notifyAvisosController extends Controller
     {
         //
     }
+
+    public function notify(){
+        if(auth()->user()){
+            $user = User::first();
+            auth()->user()->notify(new UserAvisosNotify($user));
+
+        }
+      
+    }
+    // public function allRead(){
+        
+    //     auth()->user()->unreadNotifications->markAsRead();
+    //     return back();
+    // }
 }
