@@ -7,6 +7,7 @@ use App\Models\notifyAvisos;
 use App\Notifications\UserAvisosNotify;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Notifications\Notification;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
@@ -65,6 +66,7 @@ class notifyAvisosController extends Controller
         if ($dateNotice >= $dateExecution) {
             return back()->with('msg','A data de aviso deve ser inferior ou igual à data de execução');
         }
+        
         notifyAvisos::create([
             'title' =>$request->input('title'),
             'Address'=>$request->input('Address'),
@@ -74,6 +76,13 @@ class notifyAvisosController extends Controller
             'DateExecution'=>$request->input('DateExecution'),
             'DateNotice'=>$request->input('DateNotice'),
         ]);
+
+        $user = User::all();
+        Notification::send( $user, new UserAvisosNotify(
+             $request->title,
+             $request->Address,
+             $request->participants
+             ) );
 
         return redirect('/Inbox/create')->with('msg', 'Gravado com sucesso');
 
@@ -130,6 +139,7 @@ class notifyAvisosController extends Controller
             auth()->user()->notify(new UserAvisosNotify($user));
 
         }
+    
       
     }
 

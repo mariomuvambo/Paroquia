@@ -10,7 +10,9 @@ use Illuminate\Notifications\Notification;
 class UserAvisosNotify extends Notification
 {
     use Queueable;
-    public $user;
+    private $title;
+    private $Address;
+    private $participants;
 
 
     /**
@@ -18,10 +20,12 @@ class UserAvisosNotify extends Notification
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct($title,$Address,$participants )
     {
         //
-        $this->user = $user;
+        $this->title = $title;
+        $this->Address = $Address;
+        $this->participants = $participants;
     }
 
     /**
@@ -39,10 +43,9 @@ class UserAvisosNotify extends Notification
     {
         return [
             //
-
-            'user_id' =>$this->user['id'],
-            'name' =>$this->user['name'],
-            'email' =>$this->user['email'],
+            'title' =>$this->title,
+            'Address' =>$this->Address,
+            'participants' =>$this->participants
         ];
     }
 }
