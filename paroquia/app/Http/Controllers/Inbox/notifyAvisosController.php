@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
+
 class notifyAvisosController extends Controller
 {
     private notifyAvisos $notifyAvisos;
@@ -19,7 +20,9 @@ class notifyAvisosController extends Controller
     public function index()
     {
         //
-        return view("/Inbox.read");
+        $mail = notifyAvisos::all();
+
+        return view("/Inbox.read", compact('mail'));
         
     }
 
@@ -58,7 +61,7 @@ class notifyAvisosController extends Controller
         $dateNotice = $request->input('DateNotice');
 
         if ($dateNotice >= $dateExecution) {
-            return response()->json(['msg' => 'A data de aviso deve ser inferior ou igual à data de execução'], Response::HTTP_UNPROCESSABLE_ENTITY);
+            return redirect('/Inbox/read')->with('msg','A data de aviso deve ser inferior ou igual à data de execução');
         }
 
 
