@@ -132,9 +132,5 @@ class notifyAvisosController extends Controller
         }
       
     }
-    // public function allRead(){
-        
-    //     auth()->user()->unreadNotifications->markAsRead();
-    //     return back();
-    // }
+
 }
