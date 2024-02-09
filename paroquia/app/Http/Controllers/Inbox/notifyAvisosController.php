@@ -7,7 +7,7 @@ use App\Models\notifyAvisos;
 use App\Notifications\UserAvisosNotify;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Notifications\Notification;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
 
@@ -77,13 +77,7 @@ class notifyAvisosController extends Controller
             'DateNotice'=>$request->input('DateNotice'),
         ]);
 
-        $user = User::all();
-        Notification::send( $user, new UserAvisosNotify(
-             $request->title,
-             $request->Address,
-             $request->participants
-             ) );
-
+     
         return redirect('/Inbox/create')->with('msg', 'Gravado com sucesso');
 
     }

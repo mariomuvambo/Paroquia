@@ -13,6 +13,10 @@ class UserAvisosNotify extends Notification
     private $title;
     private $Address;
     private $participants;
+    private $warningTime;
+    private $description;
+    private $DateExecution;
+    private $DateNotice;
 
 
     /**
@@ -20,7 +24,7 @@ class UserAvisosNotify extends Notification
      *
      * @return void
      */
-    public function __construct($title,$Address,$participants )
+    public function __construct($title,$Address,$participants,$warningTime,$description,$DateExecution,$DateNotice )
     {
         //
         $this->title = $title;
