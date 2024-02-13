@@ -30,6 +30,10 @@ class UserAvisosNotify extends Notification
         $this->title = $title;
         $this->Address = $Address;
         $this->participants = $participants;
+        $this->warningTime = $warningTime;
+        $this->description = $description;
+        $this->DateExecution = $DateExecution;
+        $this->DateNotice = $DateNotice;
     }
 
     /**
@@ -49,7 +53,11 @@ class UserAvisosNotify extends Notification
             //
             'title' =>$this->title,
             'Address' =>$this->Address,
-            'participants' =>$this->participants
+            'participants' =>$this->participants,
+            'warningTime'=>$this->warningTime,
+            'description'=>$this->description,
+            'DateExecution'=>$this->DateExecution ,
+            'DateNotice'=>$this->DateNotice,
         ];
     }
 }

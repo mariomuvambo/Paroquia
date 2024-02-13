@@ -49,7 +49,7 @@ class notifyAvisosController extends Controller
     public function store(Request $request)
     {
         
-        $validator = Validator::make($request->all(), [
+         Validator::make($request->all(), [
             'title' => 'required',
             'Address' => 'required',
             'participants' => 'required',
@@ -77,7 +77,16 @@ class notifyAvisosController extends Controller
             'DateNotice'=>$request->input('DateNotice'),
         ]);
 
-     
+        $user = User::all();
+        Notification::send($user, new UserAvisosNotify($request->title,
+        $request->Address,
+        $request->participants,
+        $request->warningTime,
+        $request->description,
+        $request->DateExecution,
+        $request->DateNotice,
+    ));
+
         return redirect('/Inbox/create')->with('msg', 'Gravado com sucesso');
 
     }
@@ -127,14 +136,21 @@ class notifyAvisosController extends Controller
         //
     }
 
-    public function notify(){
+    public function notificaUser(){ 
+
         if(auth()->user()){
             $user = User::first();
-            auth()->user()->notify(new UserAvisosNotify($user));
-
+            $user->notify( new notificaUser($user));
         }
-    
-      
+        dd('ok');
+       
+    }
+
+    public function markAsRead($id){
+        if($id){
+            auth()->user()->notifyAvisos->where('id',$id)->markAsRead();
+        }
+        return back();
     }
 
 }

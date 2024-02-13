@@ -85,7 +85,8 @@ Route::middleware([
 
         Route::post('/Inbox/create',[notifyAvisosController::class, 'store'])->name('inbox.store'); 
 
-        // Route::get('/Inbox', [notifyAvisosController::class,'notify'])->name('marcarLido');  
+        Route::get('/Inbox/{id}', [notifyAvisosController::class,'markAsRead'])->name('marcarLido'); 
+        // Route::get('/Inbox/read', [notifyAvisosController::class, 'markAsRead'])->name('mail.markAsRead'); 
         // Route::get('allRead', [notifyAvisosController::class,'allRead'])->name('allRead');
 
 });
