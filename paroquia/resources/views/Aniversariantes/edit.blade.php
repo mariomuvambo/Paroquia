@@ -51,6 +51,12 @@
                                  aria-label="Primeiro nome" name="date_birth" id="date_birth" value="{{ $editar->date_birth}}">
 
                             </div>
+
+                            <div class="col">
+                                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                                <input type="email" class="form-control" placeholder="email@gmail.com"
+                                    aria-label="email" name="email" id="email" value="{{$editar->email }}">
+                            </div>
                         </div>
                     </div>
 
@@ -71,7 +77,11 @@
                             <input class="form-control" type="file" id="image" name="image">
                             <img src="/img/foto_aniversario/{{$editar->image}}" alt="" class="preview_img"> 
                         </div>
+
                     </div>
+
+                    
+                   
                 </div>
 
             </div>

@@ -33,6 +33,7 @@ class SendDailyBirthdayEmails implements ShouldQueue
      */
     public function handle()
     {
+        
         // Encontre todos os aniversariantes do dia
         $aniversariantes = aniversariantes::whereMonth('date_birth', now()->format('m'))
             ->whereDay('date_birth', now()->format('d'))
@@ -42,5 +43,6 @@ class SendDailyBirthdayEmails implements ShouldQueue
         foreach ($aniversariantes as $aniversariante) {
             Mail::to($aniversariante->email)->send(new BirthdayEmail($aniversariante));
         }
+        
     }
 }
