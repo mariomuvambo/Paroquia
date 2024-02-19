@@ -16,6 +16,7 @@ class aniversariantes extends Model
         "gender",
         "image",
         "status",
+        "email",
         "user_id"
     ];
 

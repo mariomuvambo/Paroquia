@@ -53,9 +53,12 @@
                                 <label for="exampleFormControlInput1" class="form-label">Data de Nascimento</label>
                                 <input type="date" class="form-control" placeholder="Primeiro nome"
                                     aria-label="Primeiro nome" name="date_birth" id="date_birth">
-
                             </div>
                         </div>
+
+                        
+
+                        
                     </div>
 
                     <div class="bnt_submit">
@@ -74,7 +77,18 @@
                             <input class="form-control" type="file" id="image" name="image">
                         </div>
                     </div>
+
+                 
+                            <div class="col">
+                                <label for="exampleFormControlInput1" class="form-label">Email</label>
+                                <input type="email" class="form-control" placeholder="email@gmail.com"
+                                    aria-label="email" name="email" id="email">
+                            </div>
+                        </div>
+
                 </div>
+
+                
 
             </div>
         </form>

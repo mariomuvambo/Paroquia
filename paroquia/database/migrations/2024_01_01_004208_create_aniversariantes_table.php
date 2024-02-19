@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('date_birth');
             $table->char('gender',1);
             $table->string('image')->nullable();
-            $table->enum('status', ['submited', 'publicado', 'canceled'])->default('submited');
+            $table->string('email', 100)->unique();
             $table->timestamps();
         });
     }

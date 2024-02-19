@@ -54,6 +54,8 @@ class aniversarianteController extends Controller
             'surname'=>'required',
             'gender'=>'required',
             'date_birth'=>'required',
+            'email'=>'required',
+
         ]);
 
 
@@ -67,6 +69,7 @@ class aniversarianteController extends Controller
             'gender'=>$request->input('gender'),
             'date_birth'=>$request->input('date_birth'),
             'image'=>$request->input('image'),
+            'email'=>$request->input('email'),
             'user_id' => $user->id
         ]);
 
