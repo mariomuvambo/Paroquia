@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Aniversariante;
 
 use App\Http\Controllers\Controller;
 
+use App\Mail\BirthdayEmail;
 use App\Models\aniversariantes;
 use Illuminate\Http\Client\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class aniversarianteController extends Controller
@@ -20,7 +22,6 @@ class aniversarianteController extends Controller
     public function index()
     {
         //
-       
         
     }
 

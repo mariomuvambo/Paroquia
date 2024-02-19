@@ -4,10 +4,12 @@ namespace App\Http\Controllers\admin;
 
 use App\Http\Controllers\Aniversariante\aniversarianteController;
 use App\Http\Controllers\Controller;
+use App\Mail\BirthdayEmail;
 use App\Models\aniversariantes;
 use App\Models\Ministerio;
 use App\Models\UserMinisterio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -27,8 +29,23 @@ class adminController extends Controller
     {
         // 
         
-        $lista = $this->aniversariante->all();
-        return view("/Admin/aniversariante_all", compact("lista"));
+        // $lista = $this->aniversariante->all();
+        // return view("/Admin/aniversariante_all", compact("lista"));
+
+          // Encontre todos os aniversariantes do dia
+
+
+          $aniversariantes = aniversariantes::whereMonth('date_birth', now()->format('m'))
+          ->whereDay('date_birth', now()->format('d'))
+          ->get();
+
+      // Envie e-mails para cada aniversariante
+      foreach ($aniversariantes as $aniversariante) {
+          Mail::to("mariomuvambo1@gmail.com")->send(new BirthdayEmail($aniversariante));
+      }
+
+      dd($aniversariantes);
+     
     }
 
     /**
