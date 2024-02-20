@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Aniversariante;
 
 use App\Http\Controllers\Controller;
 
+use App\Jobs\SendDailyBirthdayEmails;
 use App\Mail\BirthdayEmail;
 use App\Models\aniversariantes;
 use Illuminate\Http\Client\Response;
@@ -57,8 +58,6 @@ class aniversarianteController extends Controller
             'email'=>'required',
 
         ]);
-
-
         if ($validator->fails()){
             return redirect(Response::HTTP_NO_CONTENT);
         }
@@ -90,6 +89,10 @@ class aniversarianteController extends Controller
         $user = auth()->user();
  
         $niver->save();
+
+        // Despachar o job para enviar e-mail
+    $timeToSend = now()->today()->setTime(13, 50); // Define o horário para 12:30
+    SendDailyBirthdayEmails::dispatch($niver)->delay($timeToSend);
 
         return redirect('/Aniversariantes/show')->with('msg', 'Registado com sucesso');
 
