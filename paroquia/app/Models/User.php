@@ -70,6 +70,7 @@ class User extends Authenticatable
     }
 
     public function contactos(){
-        return $this->hasOne(contactos::class);
+        
+        return $this->hasMany(contactos::class);
     }
 }
