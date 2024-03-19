@@ -7,6 +7,7 @@ use App\Models\aniversariantes;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Auth\User;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
@@ -22,7 +23,7 @@ class SendDailyBirthdayEmails implements ShouldQueue
      *
      * @return void
      */
-    public function __construct($user)
+    public function __construct(aniversariantes $user)
     {
         //
         $this->user = $user;
@@ -36,8 +37,13 @@ class SendDailyBirthdayEmails implements ShouldQueue
      */
     public function handle()
     {
+        // Envie o e-mail de aniversário
+        Mail::to($this->user->email)
+            ->send(new BirthdayEmail($this->user));
 
-        \Mail::to($this->user->email)->send(new BirthdayEmail($this->user));
+    }
+
+        // \Mail::to($user->email)->send(new BirthdayEmail($this->user));
 
         // // Encontre todos os aniversariantes do dia
         // $aniversariantes = aniversariantes::whereMonth('date_birth', now()->format('m'))
@@ -45,13 +51,14 @@ class SendDailyBirthdayEmails implements ShouldQueue
         //     ->with('user') // Carrega os usuários associados aos aniversariantes
         //     ->get();
     
-        // // Envie e-mails para cada aniversariante
-        // foreach ($aniversariantes as $aniversariante) {
-        //     $user = $aniversariante->user;
-        //     if ($user) {
-        //         Mail::to($user->email)->send(new BirthdayEmail($aniversariante));
-        //     }
-        // }
-    }
+    //     // Envie e-mails para cada aniversariante
+    //     foreach ($aniversariantes as $aniversariante) {
+    //         $user = $aniversariante->user;
+    //         if ($user) {
+    //             Mail::to($user->email)->send(new BirthdayEmail($aniversariante));
+    //         }
+
+    //     // }
+    // }
     
 }

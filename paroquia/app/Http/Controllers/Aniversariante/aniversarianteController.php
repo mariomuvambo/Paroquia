@@ -71,8 +71,6 @@ class aniversarianteController extends Controller
             'email'=>$request->input('email'),
             'user_id' => $user->id
         ]);
-
-      
     
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $requestImage = $request->image;
@@ -90,13 +88,20 @@ class aniversarianteController extends Controller
  
         $niver->save();
 
-        // Despachar o job para enviar e-mail
-    $timeToSend = now()->today()->setTime(13, 50); // Define o horário para 12:30
-    SendDailyBirthdayEmails::dispatch($niver)->delay($timeToSend);
+        $this->enviarEmail($niver);
 
         return redirect('/Aniversariantes/show')->with('msg', 'Registado com sucesso');
+     
 
     }
+
+    private function enviarEmail(aniversariantes $niver)
+    {   
+        // Despacha o job para enviar o e-mail de aniversário em segundo plano
+         dispatch(new SendDailyBirthdayEmails($niver));
+    }
+
+
 
     /**
      * Display the specified resource.

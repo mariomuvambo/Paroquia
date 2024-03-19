@@ -16,9 +16,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
-        $schedule->job(new SendDailyBirthdayEmails())->daily();
+        $schedule->command('birthday:send-notifications')->daily();
     }
+    
 
     /**
      * Register the commands for the application.
