@@ -5,10 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class notifyAvisos extends Model
+class notifications extends Model
 {
     use HasFactory;
-    protected $table = "notifyavisos";
+    protected $table = "notifications";
     protected $fillable = [
         'title',
         'Address',
@@ -17,6 +17,10 @@ class notifyAvisos extends Model
         'description',
         'DateNotice',
         'DateExecution',
-    
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

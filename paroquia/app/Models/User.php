@@ -73,4 +73,8 @@ class User extends Authenticatable
         
         return $this->hasMany(contactos::class);
     }
+    public function notifyavisos()
+    {
+        return $this->hasMany(notifyAvisos::class);
+    }
 }

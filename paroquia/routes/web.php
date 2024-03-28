@@ -78,17 +78,15 @@ Route::middleware([
     Route::post('/Contact/send-email', [contactController::class, 'store'])->name('contact.sendEmail');
 
 //   Inbox
-
         Route::get('/Inbox/read',[notifyAvisosController::class, 'index'])->name('inbox.read'); 
 
         Route::get('/Inbox/create',[notifyAvisosController::class, 'create'])->name('inbox.create'); 
 
-        Route::post('/Inbox/create',[notifyAvisosController::class, 'store'])->name('inbox.store'); 
+        Route::post('/Inbox/create',[notifyAvisosController::class, 'store'])->name('inbox.store');
 
-        Route::get('/Inbox/{id}', [notifyAvisosController::class,'markAsRead'])->name('marcarLido'); 
-        // Route::get('/Inbox/read', [notifyAvisosController::class, 'markAsRead'])->name('mail.markAsRead'); 
-        // Route::get('allRead', [notifyAvisosController::class,'allRead'])->name('allRead');
-
+// MARCAR COMO LIDO
+    
+        
 });
 
 

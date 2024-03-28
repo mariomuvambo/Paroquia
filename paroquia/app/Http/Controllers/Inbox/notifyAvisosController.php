@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Inbox;
 
 use App\Http\Controllers\Controller;
+use App\Models\notifications;
 use App\Models\notifyAvisos;
 use App\Notifications\UserAvisosNotify;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Validator;
@@ -22,13 +24,12 @@ class notifyAvisosController extends Controller
      */
     public function index()
     {
-        //
-        $mail = notifyAvisos::all();
-
-        return view("/Inbox.read", compact('mail'));
-        
+        $notifications = notifications::all();
+        return view('Inbox.read', compact('notifications'));
     }
 
+
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -46,50 +47,46 @@ class notifyAvisosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        
-         Validator::make($request->all(), [
-            'title' => 'required',
-            'Address' => 'required',
-            'participants' => 'required',
-            'warningTime' => 'required',
-            'description' => 'required',
-            'DateExecution' => 'required|date',
-            'DateNotice' => 'required|date',
-        ]);
+    
+public function store(Request $request)
+{
+    $request->validate([
+        'title' => 'required',
+        'Address' => 'required',
+        'participants' => 'required',
+        'warningTime' => 'required',
+        'description' => 'required',
+        'DateExecution' => 'required|date',
+        'DateNotice' => 'required|date',
+    ]);
 
+    $dateExecution = $request->input('DateExecution');
+    $dateNotice = $request->input('DateNotice');
 
-        $dateExecution = $request->input('DateExecution');
-        $dateNotice = $request->input('DateNotice');
-
-        if ($dateNotice >= $dateExecution) {
-            return back()->with('msg','A data de aviso deve ser inferior ou igual à data de execução');
-        }
-        
-        notifyAvisos::create([
-            'title' =>$request->input('title'),
-            'Address'=>$request->input('Address'),
-            'participants'=>$request->input('participants'),
-            'warningTime'=>$request->input('warningTime'),
-            'description'=>$request->input('description'),
-            'DateExecution'=>$request->input('DateExecution'),
-            'DateNotice'=>$request->input('DateNotice'),
-        ]);
-
-        $user = User::all();
-        Notification::send($user, new UserAvisosNotify($request->title,
-        $request->Address,
-        $request->participants,
-        $request->warningTime,
-        $request->description,
-        $request->DateExecution,
-        $request->DateNotice,
-    ));
-
-        return redirect('/Inbox/create')->with('msg', 'Gravado com sucesso');
-
+    if ($dateNotice >= $dateExecution) {
+        return back()->with('msg', 'A data de aviso deve ser inferior ou igual à data de execução');
     }
+
+    $notificationData = [
+        'title' => $request->input('title'),
+        'Address' => $request->input('Address'),
+        'participants' => $request->input('participants'),
+        'warningTime' => $request->input('warningTime'),
+        'description' => $request->input('description'),
+        'DateExecution' => $request->input('DateExecution'),
+        'DateNotice' => $request->input('DateNotice'),
+    ];
+
+    notifications::create($notificationData);
+
+    $users = User::all();
+
+    foreach ($users as $user) {
+        $user->notify(new UserAvisosNotify($notificationData));
+    }
+    return redirect('/Inbox/create')->with('msg', 'Gravado com sucesso');
+}
+    
 
     /**
      * Display the specified resource.
@@ -136,21 +133,21 @@ class notifyAvisosController extends Controller
         //
     }
 
-    public function notificaUser(){ 
+    // public function notificaUser(){ 
 
-        if(auth()->user()){
-            $user = User::first();
-            $user->notify( new notificaUser($user));
-        }
-        dd('ok');
+    //     if(auth()->user()){
+    //         $user = User::first();
+    //         $user->notify( new notificaUser($user));
+    //     }
+    //     dd('ok');
        
-    }
+    // }
 
-    public function markAsRead($id){
-        if($id){
-            auth()->user()->notifyAvisos->where('id',$id)->markAsRead();
-        }
-        return back();
-    }
+    // public function markAsRead($id){
+    //     if($id){
+    //         auth()->user()->notifyAvisos->where('id',$id)->markAsRead();
+    //     }
+    //     return back();
+    // }
 
 }

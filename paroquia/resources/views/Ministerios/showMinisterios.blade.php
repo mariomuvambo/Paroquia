@@ -9,7 +9,7 @@
 
         <div class="container">
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-4">
                     <div class="card mx-auto" style="max-width: 600px; margin:20px;">
                         <div class="card-header">
                             <h6 class="font-weight-bold" style="float:left; font-size: 22px;"> <strong>Detalhes</strong> </h6>
@@ -17,7 +17,20 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
+                <div class="col-md-8">
+                    <div class="card mx-auto" style="max-width: 600px; margin:20px;">
+                    <div class="card-header">
+
+                        <form class="d-flex" role="search">
+                            <input class="form-control me-4" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+
+                        </div>
+                        </div>
+                    </div>
+                </div>
         </div>
 
 
@@ -56,7 +69,7 @@
         </div>
 
         <hr>
-        <p class="mb-0">Date: 12.12.22</p>
+        <p class="mb-0">Date: {{$detalhes->created_at}}</p>
         @endforeach
 
     </div>
