@@ -11,37 +11,42 @@
 
   <div class="container">
 
+  <a class="btn btn-info" href="{{ route('notifications.allRead')}}" >Marcar todos como lido</a>
 
-    <!-- <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        <strong></strong> Você deveria verificar alguns desses campos abaixo.
-        <a type="button" class="btn-close" aria-label="Close" href="">X</a>
-    </div>
-    
-    <div class="w-full py-2 px-5 border border-yellow-500 bg-yellow-100 text-yellow-100">
+@forelse(Auth::user()->unreadNotifications as $notification)
+
+  <div class="alert alert-primary" role="alert">
+    <strong>{{ $notification->data['title'] }}</strong>
+ {{ $notification->data['participants'] }} {{ $notification->data['address'] }}  {{ $notification->data['date_execution'] }}
+{{ $notification->data['date_notice' ]}} {{ $notification->data['warningTime' ]}}
+     <a style="float: right" href="{{ route('notifications.markAsRead', $notification->id)}}" >X</a>
+</div>
+@empty
+
+<div class="w-full py-2 px-5 border border-yellow-500 bg-yellow-100 text-yellow-100">
         OBRIGADO POR SE REGISTRAR NO SISTEMA!
         <p style="color: red;">Nenhuma notificação encontrada....</p>
-    </div> -->
+    </div> 
 
-<!-- resources/views/Inbox/read.blade.php -->
 
-@foreach($notifications as $notification)
-    <li>
-        <p>{{ $notification->title }}</p>
-        <p>{{ $notification->participants }}</p>
-        <p>{{ $notification->address }}</p>
-        <p>{{ $notification->date_execution }}</p>
-        <p>{{ $notification->date_notice }}</p>
-        <p>{{ $notification->warmingtime }}</p>
-        
-        <!-- Adicione um formulário para marcar como lida -->
-        @unless($notification->read_at)
-            <form action="{{ route('notifications.markAsRead', $notification->id) }}" method="POST">
-                @csrf
-                <button type="submit">Marcar como lida</button>
-            </form>
-        @endunless
+
     </li>
-@endforeach
+@endforelse
+
+<!-- Mostrar notificações lidas -->
+@forelse(Auth::user()->readNotifications as $notification)
+  <div class="alert alert-secondary" role="alert">
+    <strong>{{ $notification->data['title'] }}</strong>
+    {{ $notification->data['participants'] }} {{ $notification->data['address'] }}  {{ $notification->data['date_execution'] }}
+    {{ $notification->data['date_notice'] }} {{ $notification->data['warningTime'] }}
+    <!-- Adicione aqui o link para marcar como não lida, se necessário -->
+  </div>
+@empty
+  <div class="w-full py-2 px-5 border border-gray-500 bg-gray-100 text-gray-100">
+    <p>Nenhuma notificação lida encontrada...</p>
+  </div> 
+@endforelse
+
 
  
 

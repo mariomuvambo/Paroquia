@@ -29,11 +29,17 @@ class notifyAvisosController extends Controller
         return view('Inbox.read', compact('notifications'));
     }
     
-    public function markAsRead(Notification $notification)
+    public function markAsRead( $id)
     {
-        $notification->update(['read_at' => now()]);
-    
-        return back(); // Redireciona de volta para a página anterior
+        if($id){
+            auth()->user()->notifications->where('id', $id)->markAsRead();
+        }
+        return back();
+    }
+
+    public function allRead(){
+        auth()->user()->unreadNotifications->markAsRead();
+        return back();
     }
     
     

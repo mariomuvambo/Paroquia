@@ -87,11 +87,9 @@ Route::middleware([
 
 // MARCAR COMO LIDO
 
-// Route::post('/notifications/mark-as-read', [notifyAvisosController::class, 'markAsRead'])->name('notifications.markAsRead');
+Route::get('/notifications/{id}/mark-as-read', [notifyAvisosController::class, 'markAsRead'])->name('notifications.markAsRead');
+Route::get('/notifications/allRead', [notifyAvisosController::class, 'allRead'])->name('notifications.allRead');
 
-// routes/web.php
-
-Route::post('/notifications/{notification}/mark-as-read', [notifyAvisosController::class, 'markAsRead'])->name('notifications.markAsRead');
 
 
 
