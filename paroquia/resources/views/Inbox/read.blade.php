@@ -22,29 +22,28 @@
         <p style="color: red;">Nenhuma notificação encontrada....</p>
     </div> -->
 
-    @foreach ($notifications as $notification)
-    <tr>
-        <td>{{ $notification->title }}</td>
-        <td>{{ $notification->Address }}</td>
-        <td>{{ $notification->participants }}</td>
-        <!-- Adicione mais colunas conforme necessário -->
-        <td>
-            @if ($notification->read_at === null)
-                <form action="{{ route('notifications.markAsRead', $notification) }}" method="POST">
-                    @csrf
-                    <button type="submit">Marcar como lida</button>
-                </form>
-            @else
-                <span>Lida</span>
-            @endif
-        </td>
-    </tr>
+<!-- resources/views/Inbox/read.blade.php -->
+
+@foreach($notifications as $notification)
+    <li>
+        <p>{{ $notification->title }}</p>
+        <p>{{ $notification->participants }}</p>
+        <p>{{ $notification->address }}</p>
+        <p>{{ $notification->date_execution }}</p>
+        <p>{{ $notification->date_notice }}</p>
+        <p>{{ $notification->warmingtime }}</p>
+        
+        <!-- Adicione um formulário para marcar como lida -->
+        @unless($notification->read_at)
+            <form action="{{ route('notifications.markAsRead', $notification->id) }}" method="POST">
+                @csrf
+                <button type="submit">Marcar como lida</button>
+            </form>
+        @endunless
+    </li>
 @endforeach
 
-
-
-
-  </div>
+ 
 
   @endsection
 

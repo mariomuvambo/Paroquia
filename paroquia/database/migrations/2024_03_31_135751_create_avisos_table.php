@@ -13,17 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('notifyavisos', function (Blueprint $table) {
+        Schema::create('avisos', function (Blueprint $table) {
             $table->id();
             $table->string("title");
-            $table->string("Address");
+            $table->string("address");
             $table->string("participants");
             $table->string("warningTime");
             $table->string("description"); 
-            $table->string("DateExecution");
-            $table->string("DateNotice");
+            $table->string("date_execution");
+            $table->string("date_notice");
             $table->timestamps();
         });
+
     }
 
     /**
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('notifyavisos');
+        Schema::dropIfExists('avisos');
     }
 };

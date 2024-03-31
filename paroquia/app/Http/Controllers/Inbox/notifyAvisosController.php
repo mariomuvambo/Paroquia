@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Inbox;
 
 use App\Http\Controllers\Controller;
-use App\Models\notifications;
-use App\Models\notifyAvisos;
+use App\Models\avisos;
 use App\Notifications\UserAvisosNotify;
 use App\Models\User;
+use App\Notifications\UserReadNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Validator;
 
 class notifyAvisosController extends Controller
 {
-    private notifyAvisos $notifyAvisos;
     /**
      * Display a listing of the resource.
      *
@@ -24,17 +23,19 @@ class notifyAvisosController extends Controller
      */
     public function index()
     {
-        $notifications = notifications::all();
+        $user = Auth::user();
+        $notifications = $user->notifications;
+    
         return view('Inbox.read', compact('notifications'));
     }
-
+    
     public function markAsRead(Notification $notification)
     {
-        $user = auth()->user();
-        $user->unreadNotifications()->where('id', $notification->id)->update(['read_at' => now()]);
-        return redirect()->back();
+        $notification->update(['read_at' => now()]);
+    
+        return back(); // Redireciona de volta para a página anterior
     }
-
+    
     
     /**
      * Show the form for creating a new resource.
@@ -54,44 +55,70 @@ class notifyAvisosController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-public function store(Request $request)
-{
-    $request->validate([
-        'title' => 'required',
-        'Address' => 'required',
-        'participants' => 'required',
-        'warningTime' => 'required',
-        'description' => 'required',
-        'DateExecution' => 'required|date',
-        'DateNotice' => 'required|date',
-    ]);
-
-    $dateExecution = $request->input('DateExecution');
-    $dateNotice = $request->input('DateNotice');
-
-    if ($dateNotice >= $dateExecution) {
-        return back()->with('msg', 'A data de aviso deve ser inferior ou igual à data de execução');
-    }
-
-    $notificationData = [
-        'title' => $request->input('title'),
-        'Address' => $request->input('Address'),
-        'participants' => $request->input('participants'),
-        'warningTime' => $request->input('warningTime'),
-        'description' => $request->input('description'),
-        'DateExecution' => $request->input('DateExecution'),
-        'DateNotice' => $request->input('DateNotice'),
-    ];
-
-    notifications::create($notificationData);
-
-    $users = User::all();
-
-    foreach ($users as $user) {
-        $user->notify(new UserAvisosNotify($notificationData));
-    }
-    return redirect('/Inbox/create')->with('msg', 'Gravado com sucesso');
-}
+     
+     public function store(Request $request)
+     {
+         $validator = Validator::make($request->all(), [
+             'title' => 'required',
+             'address' => 'required',
+             'participants' => 'required',
+             'warningTime' => 'required',
+             'description' => 'required',
+             'date_execution' => 'required|date',
+             'date_notice' => 'required|date',
+         ]);
+     
+         if ($validator->fails()) {
+             return redirect()->back()->withErrors($validator)->withInput(); // Return validation errors and keep form data
+         }
+     
+         $dateExecution = $request->input('date_execution');
+         $dateNotice = $request->input('date_notice');
+     
+         if ($dateNotice >= $dateExecution) {
+             return back()->with('msg', 'The notice date must be before the execution date'); // Corrected error message
+         }
+     
+         $notificationData = [
+             'title' => $request->input('title'),
+             'address' => $request->input('address'),
+             'participants' => $request->input('participants'),
+             'warningTime' => $request->input('warningTime'),
+             'description' => $request->input('description'),
+             'date_execution' => $dateExecution,
+             'date_notice' => $dateNotice,
+         ];
+     
+         $notification = $this->createNotification($notificationData);
+     
+         return redirect()->route('inbox.create')->with('msg', 'Successfully saved'); // Corrected route name and success message
+     }
+     
+     private function createNotification($notificationData)
+     {
+         $notification = Avisos::create($notificationData);
+     
+         // Notify all users about the new notification
+         $users = User::all();
+         Notification::send($users, new UserReadNotification(
+             $notificationData['title'],
+             $notificationData['participants'],
+             $notificationData['description'],
+             $notificationData['address'],
+             $notificationData['date_execution'],
+             $notificationData['date_notice'],
+             $notificationData['warningTime']
+         ));
+     
+         foreach ($users as $user) {
+             $user->notify(new UserAvisosNotify($notification));
+         }
+     
+         return $notification;
+     }
+     
+     
+     
     
 
     /**

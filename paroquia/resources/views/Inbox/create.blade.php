@@ -19,21 +19,21 @@
                 </div>
 
                 <div class="col">
-                    <label for="DateNotice">Data do Aviso</label>
-                    <input type="date" class="form-control" name="DateNotice" id="DateNotice">
+                    <label for="date_notice">Data do Aviso</label>
+                    <input type="date" class="form-control" name="date_notice" id="date_notice">
 
                 </div>
             </div>
 
             <div class="row">
                 <div class="col">
-                    <label for="Address">Local da Realização</label>
-                    <input type="text" class="form-control" name="Address" id="Address">
+                    <label for="address">Local da Realização</label>
+                    <input type="text" class="form-control" name="address" id="address">
                 </div>
 
                 <div class="col">
-                    <label for="DateExecution">Data da Realização </label>
-                    <input type="date" class="form-control" name="DateExecution" id="DateExecution">
+                    <label for="date_execution">Data da Realização </label>
+                    <input type="date" class="form-control" name="date_execution" id="date_execution">
                 </div>
             </div>
 
