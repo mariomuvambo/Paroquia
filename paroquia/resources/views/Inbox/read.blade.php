@@ -11,7 +11,7 @@
 
   <div class="container">
 
-  <a class="btn btn-info" href="{{ route('notifications.allRead')}}" >Marcar todos como lido</a>
+  <a style="margin-bottom: 10px;" class="btn btn-info" href="{{ route('notifications.allRead')}}" >Marcar todos como lido</a>
 
 @forelse(Auth::user()->unreadNotifications as $notification)
 
@@ -23,14 +23,11 @@
 </div>
 @empty
 
-<div class="w-full py-2 px-5 border border-yellow-500 bg-yellow-100 text-yellow-100">
-        OBRIGADO POR SE REGISTRAR NO SISTEMA!
-        <p style="color: red;">Nenhuma notificação encontrada....</p>
+<div style="margin-bottom: 10px;" class="w-full py-2 px-5 border border-yellow-400 bg-yellow-100 text-yellow-100">
+        <!-- OBRIGADO POR SE REGISTRAR NO SISTEMA! -->
+        <p style="color: red;">Sem Notificação ....</p><br>
     </div> 
 
-
-
-    </li>
 @endforelse
 
 <!-- Mostrar notificações lidas -->
@@ -42,9 +39,7 @@
     <!-- Adicione aqui o link para marcar como não lida, se necessário -->
   </div>
 @empty
-  <div class="w-full py-2 px-5 border border-gray-500 bg-gray-100 text-gray-100">
-    <p>Nenhuma notificação lida encontrada...</p>
-  </div> 
+
 @endforelse
 
 
