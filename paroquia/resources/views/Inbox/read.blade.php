@@ -17,7 +17,7 @@
 
   <div class="alert alert-primary" role="alert">
     <strong>{{ $notification->data['title'] }}</strong>
- {{ $notification->data['participants'] }} {{ $notification->data['address'] }}  {{ $notification->data['date_execution'] }}
+ {{ $notification->data['participants'] }} {{ $notification->data['address'] }} <strong> {{ $notification->data['description'] }} </strong>  {{ $notification->data['date_execution'] }}
 {{ $notification->data['date_notice' ]}} {{ $notification->data['warningTime' ]}}
      <a style="float: right" href="{{ route('notifications.markAsRead', $notification->id)}}" >X</a>
 </div>
