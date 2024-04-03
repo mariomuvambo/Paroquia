@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Inbox;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\SendNotificationEmail;
 use App\Models\avisos;
 use App\Notifications\UserAvisosNotify;
 use App\Models\User;
@@ -60,68 +61,56 @@ class notifyAvisosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    
-     
-     public function store(Request $request)
-     {
-         $validator = Validator::make($request->all(), [
-             'title' => 'required',
-             'address' => 'required',
-             'participants' => 'required',
-             'warningTime' => 'required',
-             'description' => 'required',
-             'date_execution' => 'required|date',
-             'date_notice' => 'required|date',
-         ]);
-     
-         if ($validator->fails()) {
-             return redirect()->back()->withErrors($validator)->withInput(); // Return validation errors and keep form data
-         }
-     
-         $dateExecution = $request->input('date_execution');
-         $dateNotice = $request->input('date_notice');
-     
-         if ($dateNotice >= $dateExecution) {
-             return back()->with('msg', 'The notice date must be before the execution date'); // Corrected error message
-         }
-     
-         $notificationData = [
-             'title' => $request->input('title'),
-             'address' => $request->input('address'),
-             'participants' => $request->input('participants'),
-             'warningTime' => $request->input('warningTime'),
-             'description' => $request->input('description'),
-             'date_execution' => $dateExecution,
-             'date_notice' => $dateNotice,
-         ];
-     
-         $notification = $this->createNotification($notificationData);
-     
-         return redirect()->route('inbox.create')->with('msg', 'Successfully saved'); // Corrected route name and success message
-     }
-     
-     private function createNotification($notificationData)
-     {
-         $notification = Avisos::create($notificationData);
-     
-         // Notify all users about the new notification
-         $users = User::all();
-         Notification::send($users, new UserReadNotification(
-             $notificationData['title'],
-             $notificationData['participants'],
-             $notificationData['description'],
-             $notificationData['address'],
-             $notificationData['date_execution'],
-             $notificationData['date_notice'],
-             $notificationData['warningTime']
-         ));
-     
-         foreach ($users as $user) {
-             $user->notify(new UserAvisosNotify($notification));
-         }
-     
-         return $notification;
-     }
+
+ 
+public function store(Request $request)
+{
+    $validator = Validator::make($request->all(), [
+        'title' => 'required',
+        'address' => 'required',
+        'participants' => 'required',
+        'warningTime' => 'required',
+        'description' => 'required',
+        'date_execution' => 'required|date',
+        'date_notice' => 'required|date',
+    ]);
+
+    if ($validator->fails()) {
+        return redirect()->back()->withErrors($validator)->withInput();
+    }
+
+    $dateExecution = $request->input('date_execution');
+    $dateNotice = $request->input('date_notice');
+
+    if ($dateNotice >= $dateExecution) {
+        return back()->with('msg', 'The notice date must be before the execution date');
+    }
+
+    $notificationData = [
+        'title' => $request->input('title'),
+        'address' => $request->input('address'),
+        'participants' => $request->input('participants'),
+        'warningTime' => $request->input('warningTime'),
+        'description' => $request->input('description'),
+        'date_execution' => $dateExecution,
+        'date_notice' => $dateNotice,
+    ];
+
+    $notification = $this->createNotification($notificationData);
+
+    // Dispatch the job to send email asynchronously
+    SendNotificationEmail::dispatch($notificationData);
+
+    return redirect()->route('inbox.create')->with('msg', 'Successfully saved');
+}
+
+private function createNotification($notificationData)
+{
+    $notification = Avisos::create($notificationData);
+
+    // You may notify users about the new notification here if needed
+    return $notification;
+}
      
      
      
