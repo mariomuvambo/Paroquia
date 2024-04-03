@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\aniversariantes;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -102,5 +103,13 @@ class userController extends Controller
         
         $this ->user->where('id', $id)->delete();
         return redirect('/User/show')->with('msg','Apagado com sucesso');
+    }
+
+    public function showStatistics()
+    {
+        $totalUsers = User::count();
+        $totalBirthdays = aniversariantes::count();
+        
+        return view('statistics', compact('totalUsers', 'totalBirthdays'));
     }
 }

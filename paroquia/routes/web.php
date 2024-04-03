@@ -86,6 +86,9 @@ Route::get('/notifications/{id}/mark-as-read', [notifyAvisosController::class, '
 Route::get('/notifications/allRead', [notifyAvisosController::class, 'allRead'])->name('notifications.allRead');
 
 
+// grafico 
+Route::get('/statistics', [userController::class, 'showStatistics']);
+
 
 
     

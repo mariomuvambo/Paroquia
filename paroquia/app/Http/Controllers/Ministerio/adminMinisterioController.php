@@ -137,4 +137,10 @@ class adminMinisterioController extends Controller
         Ministerio::findorFail($id)->delete();
         return redirect('/Ministerios/listaMinisterio')->with('msg','Apagado com sucesso');
     }
+
+
+  
+
+
+    
 }
