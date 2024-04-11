@@ -8,30 +8,38 @@
     </div>
     <hr style="margin-bottom: 15px;">
     <div class="container">
-    <div class="row">
-            @foreach($ministerios as $Userministerio)
-            <div class="col-sm-4 mb-3 mb-sm-0">
-                <div class="card" style="width: 18rem;">
-                    <div class="card-body">
-                        <h5 class="card-title"><strong>Ministerio: </strong>{{ $Userministerio->selecioneMinisterio }}</h5>
-                        <h6 class="card-subtitle mb-2 text-muted"> <strong>Nome:</strong> {{ $Userministerio->nome }} {{
-                            $Userministerio->apelido }}</h6>
-                        <p class="card-text"><strong>Contacto:</strong> {{ $Userministerio->contacto }}</p>
-                        <div class="card-footer">
-                            <small class="text-muted">
-                                <a href="{{ route('ministerio.edit', ['id' => $Userministerio->id]) }}" class="btn 
-                                         btn-primary details-btn">Editar
-                                </a>
-                                <a href=" {{ route('adminministerios.show') }} " class="btn 
-                                         btn-secondary details-btn"> Detalhes</a>
-                            </small>
-                        </div>
 
-                    </div>
-                </div>
-            </div>
-            @endforeach
-        </div>
-    </div>
+
+
+<table class="table caption-top">
+  <caption>Lista de usuarios Registados</caption>
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Ministerio</th>
+      <th scope="col">Nome</th>
+      <th scope="col">Contacto</th>
+      <th scope="col">Ação</th>
+    </tr>
+  </thead>
+  @foreach($ministerios as $Userministerio)
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>{{ $Userministerio->selecioneMinisterio }}</td>
+      <td> {{ $Userministerio->nome }} {{$Userministerio->apelido }}</td>
+      <td>{{ $Userministerio->contacto }}</td>
+      <td> <a href="{{ route('ministerio.edit', ['id' => $Userministerio->id]) }}" class="btn 
+                                         btn-primary details-btn">Editar
+                                </a> | <a href=" {{ route('adminministerios.show') }} " class="btn 
+                                         btn-secondary details-btn"> Detalhes</a></td>
+
+    </tr>
+@endforeach
+  </tbody>
+</table>
+
+
+   
     @endsection
 </x-app-layout>

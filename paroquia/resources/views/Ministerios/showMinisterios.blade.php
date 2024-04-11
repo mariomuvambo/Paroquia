@@ -4,6 +4,11 @@
     @section('title', 'Detalhes')
     @section('content')
 
+    <div>
+        <h2 id="subtitulo">Ministérios</h2>
+    </div>
+    <hr style="margin-bottom: 15px;">
+
 
     <div class="container">
 
