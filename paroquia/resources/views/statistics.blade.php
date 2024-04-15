@@ -6,7 +6,6 @@
 </head>
 <body>
     <canvas id="userStatistics" width="300" height="300"></canvas>
-
     <script>
         var ctx = document.getElementById('userStatistics').getContext('2d');
         var chart = new Chart(ctx, {

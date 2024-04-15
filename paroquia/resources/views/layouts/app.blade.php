@@ -147,14 +147,12 @@
                                 @if(session('msg'))
                                 <p class="msg">{{session('msg')}}</p>
                                 @endif
-
                             </div>
                         </div>
                         @yield('content')
                     </div>
                 </div>
             </div>
-
         </main>
     </div>
 
