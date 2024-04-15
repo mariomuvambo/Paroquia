@@ -57,10 +57,10 @@
                 </div>
             </div>
             <br>
-            <button class="btn btn-info" type="submit" value="Registar Aviso"> Registar Aviso</button>
+            <button style="margin-bottom: 15px" class="btn btn-info" type="submit" value="Registar Aviso"> Registar Aviso</button>
         </form>
     </div>
-    #
+    
 
     @endsection
 

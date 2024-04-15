@@ -10,8 +10,11 @@
         </div>
         <hr style="margin-bottom: 15px;">
 
+
+
+
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            @foreach($lista as $list)
+            @forelse($lista as $list)
             <div class="col">
                 <div class="card">
                     <img src="/img/foto_aniversario/{{$list->image }}" class="card-img-top" alt="...">
@@ -33,22 +36,13 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+            @empty
+        <p style="color:red;  margin-bottom: 15px;">Sem aniversários cadastrados</p>
+        @endforelse
         </div>
 
 
-        
-
-
-
-
-
-
-
-
-
-
-        
+    
     </div>
 
 

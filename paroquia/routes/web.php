@@ -89,8 +89,6 @@ Route::get('/notifications/allRead', [notifyAvisosController::class, 'allRead'])
 // grafico 
 Route::get('/statistics', [userController::class, 'showStatistics']);
 
-
-
     
 
         

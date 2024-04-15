@@ -36,6 +36,8 @@
 
     <link rel="stylesheet" href="/css/list.css">
 
+    <link rel="stylesheet" href="/css/avisos.css">
+
 
 </head>
 
@@ -97,7 +99,6 @@
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="/Aniversariantes/show">Registados</a></li>
                                
-                              
                                 @can('admin')
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="/Admin/aniversariante_all">Todos aniversariantes</a>

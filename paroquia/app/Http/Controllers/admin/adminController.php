@@ -29,22 +29,8 @@ class adminController extends Controller
     {
         // 
         
-        // $lista = $this->aniversariante->all();
-        // return view("/Admin/aniversariante_all", compact("lista"));
-
-          // Encontre todos os aniversariantes do dia
-
-
-          $aniversariantes = aniversariantes::whereMonth('date_birth', now()->format('m'))
-          ->whereDay('date_birth', now()->format('d'))
-          ->get();
-
-      // Envie e-mails para cada aniversariante
-      foreach ($aniversariantes as $aniversariante) {
-          Mail::to("mariomuvambo1@gmail.com")->send(new BirthdayEmail($aniversariante));
-      }
-
-      dd($aniversariantes);
+        $lista = $this->aniversariante->all();
+        return view("/Admin/aniversariante_all", compact("lista"));        
      
     }
 
