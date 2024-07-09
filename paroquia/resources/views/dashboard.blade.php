@@ -114,7 +114,7 @@
             </div>
             <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text">Faca parte dos Ministerios da Igreja e contribua com o amor ao proximo<p>
                 <a href="{{ route('ministerio.createUser') }}" class="btn btn-primary">Registar-se</a>
                 <a href="{{ route('ministerio.show') }}" class="btn btn-info">Registados</a>
             </div>
@@ -125,14 +125,14 @@
 
         <div class="card text-center">
             <div class="card-header">
-                Featured
+                Missa
             </div>
             <div class="card-body">
                 <h5 class="card-title">Special title treatment</h5>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <p class="card-text">Horário das missas semanais e Dominicais</p>
 
                 <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                    Launch demo modal
+                    Horário das Missas 
                 </a>
 
                 <!-- Modal -->
@@ -141,7 +141,7 @@
                     <div class="modal-dialog modal-lg modal-dialog-centered">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Horário </h1>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"
                                     aria-label="Close"></button>
                             </div>
@@ -150,29 +150,53 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">#</th>
-                                            <th scope="col">First</th>
-                                            <th scope="col">Last</th>
-                                            <th scope="col">Handle</th>
+                                            <th scope="col">Hora</th>
+                                            <th scope="col">7h</th>
+                                            <th scope="col">10h</th>
+                                            <th scope="col">18h</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th scope="row">1</th>
-                                            <td>Mark</td>
-                                            <td>Otto</td>
-                                            <td>@mdo</td>
+                                            <th scope="row">Segunda</th>
+                                            <td>X</td>
+                                            <td></td>
+                                            <td></td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">2</th>
-                                            <td>Jacob</td>
-                                            <td>Thornton</td>
-                                            <td>@fat</td>
+                                            <th scope="row">Terca</th>
+                                            <td></td>
+                                            <td>X</td>
+                                            <td></td>
                                         </tr>
                                         <tr>
-                                            <th scope="row">3</th>
-                                            <td colspan="2">Larry the Bird</td>
-                                            <td>@twitter</td>
+                                            <th scope="row">quarta</th>
+                                            <td>X</td>
+                                            <td></td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">quinta</th>
+                                            <td></td>
+                                            <td>X</td>
+                                            <td></td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">sexta</th>
+                                            <td>X</td>
+                                            <td></td>
+                                            <td>X</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Sábado</th>
+                                            <td>X</td>
+                                            <td></td>
+                                            <td>X</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Domingo</th>
+                                            <td colspan="2">Missa Unica</td>
+                                            <td></td>
                                         </tr>
                                     </tbody>
                                 </table>

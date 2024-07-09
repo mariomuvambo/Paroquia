@@ -3,7 +3,7 @@
     @section('title', 'Create notificação')
     @section('content')
     <div>
-        <h2 id="subtitulo">Create Notificação</h2>
+        <h2 id="subtitulo">Notificaçoes</h2>
     </div>
     <hr style="margin-bottom: 15px;">
 

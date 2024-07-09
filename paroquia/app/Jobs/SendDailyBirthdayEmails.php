@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Mail;
 class SendDailyBirthdayEmails implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
     protected $user;
 
     /**
@@ -38,8 +39,7 @@ class SendDailyBirthdayEmails implements ShouldQueue
     public function handle()
     {
         // Envie o e-mail de aniversário
-        Mail::to($this->user->email)
-            ->send(new BirthdayEmail($this->user));
+        Mail::to($this->user->email)->send(new BirthdayEmail($this->user));
 
     }
 

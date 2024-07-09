@@ -83,7 +83,7 @@ public function store(Request $request)
     $dateNotice = $request->input('date_notice');
 
     if ($dateNotice >= $dateExecution) {
-        return back()->with('msg', 'The notice date must be before the execution date');
+        return back()->with('msg', 'A data do Aviso nao pode ser superior a Data de Realização');
     }
 
     $notificationData = [
@@ -112,10 +112,8 @@ private function createNotification($notificationData)
     return $notification;
 }
      
-     
-     
-    
 
+    
     /**
      * Display the specified resource.
      *

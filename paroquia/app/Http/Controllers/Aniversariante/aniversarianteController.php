@@ -45,60 +45,45 @@ class aniversarianteController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $user = Auth::user();
- 
-        //Validar os dados necessários para o preenchimento na base de dados
 
-        $validator = Validator::make($request ->all(),[
+        // Validar os dados necessários para o preenchimento na base de dados
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'surname'=>'required',
-            'gender'=>'required',
-            'date_birth'=>'required',
-            'email'=>'required',
-
+            'surname' => 'required',
+            'gender' => 'required',
+            'date_birth' => 'required',
+            'email' => 'required',
         ]);
-        if ($validator->fails()){
-            return redirect(Response::HTTP_NO_CONTENT);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
         }
 
         $niver = aniversariantes::create([
-            'name' =>$request->input('name'),
-            'surname'=>$request->input('surname'),
-            'gender'=>$request->input('gender'),
-            'date_birth'=>$request->input('date_birth'),
-            'image'=>$request->input('image'),
-            'email'=>$request->input('email'),
+            'name' => $request->input('name'),
+            'surname' => $request->input('surname'),
+            'gender' => $request->input('gender'),
+            'date_birth' => $request->input('date_birth'),
+            'image' => $request->input('image'),
+            'email' => $request->input('email'),
             'user_id' => $user->id
         ]);
-    
+
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
             $requestImage = $request->image;
-
             $extension = $requestImage->extension();
-
-            $imageName = md5($requestImage->getClientOriginalName() . strtok('now') . "." . $extension);
-
+            $imageName = md5($requestImage->getClientOriginalName() . now() . "." . $extension);
             $requestImage->move(public_path('img/foto_aniversario'), $imageName);
-
             $niver->image = $imageName;
         }
 
-        $user = auth()->user();
- 
         $niver->save();
 
-        $this->enviarEmail($niver);
+        // Despacha o job para enviar o e-mail em segundo plano
+        SendDailyBirthdayEmails::dispatch($niver);
 
         return redirect('/Aniversariantes/show')->with('msg', 'Registado com sucesso');
-     
-
-    }
-
-    private function enviarEmail(aniversariantes $niver)
-    {   
-        // Despacha o job para enviar o e-mail de aniversário em segundo plano
-         dispatch(new SendDailyBirthdayEmails($niver));
     }
 
 
