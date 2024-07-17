@@ -48,9 +48,19 @@ class contactController extends Controller
             'surname'=>'required',
             'phone'=>'required',
             'email'=>'required',
-            'message'=>'required',
+            'message'=>'required', 
+        ],[
+            'name.required' =>'O campo Nome é obrigatório ', 
+            'surname.required'=> 'O campo Apelido é Obrigatório',
+            'phone.required'=> 'O campo Telefone é Obrigatório',
+            'email.required'=> 'O campo email é Obrigatório',
+            'message.required'=> 'O campo Mensagem é Obrigatório',
+
         ]); 
-       
+    
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
 
         contacto::create([
             'name' =>$request->input('name'),

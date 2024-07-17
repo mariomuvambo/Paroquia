@@ -37,10 +37,12 @@ class SendNotificationEmail implements ShouldQueue
      */
     public function handle()
     {
+        
         $notification = avisos::create($this->notificationData);
 
         // Notify all users about the new notification
         $users = User::all();
+        
         Notification::send($users, new UserReadNotification(
             $this->notificationData['title'],
             $this->notificationData['participants'],

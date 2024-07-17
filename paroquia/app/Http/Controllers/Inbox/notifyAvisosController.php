@@ -63,54 +63,54 @@ class notifyAvisosController extends Controller
      */
 
  
-public function store(Request $request)
-{
-    $validator = Validator::make($request->all(), [
-        'title' => 'required',
-        'address' => 'required',
-        'participants' => 'required',
-        'warningTime' => 'required',
-        'description' => 'required',
-        'date_execution' => 'required|date',
-        'date_notice' => 'required|date',
-    ]);
-
-    if ($validator->fails()) {
-        return redirect()->back()->withErrors($validator)->withInput();
-    }
-
-    $dateExecution = $request->input('date_execution');
-    $dateNotice = $request->input('date_notice');
-
-    if ($dateNotice >= $dateExecution) {
-        return back()->with('msg', 'A data do Aviso nao pode ser superior a Data de Realização');
-    }
-
-    $notificationData = [
-        'title' => $request->input('title'),
-        'address' => $request->input('address'),
-        'participants' => $request->input('participants'),
-        'warningTime' => $request->input('warningTime'),
-        'description' => $request->input('description'),
-        'date_execution' => $dateExecution,
-        'date_notice' => $dateNotice,
-    ];
-
-    $notification = $this->createNotification($notificationData);
-
-    // Dispatch the job to send email asynchronously
-    SendNotificationEmail::dispatch($notificationData);
-
-    return redirect()->route('inbox.create')->with('msg', 'Successfully saved');
-}
-
-private function createNotification($notificationData)
-{
-    $notification = Avisos::create($notificationData);
-
-    // You may notify users about the new notification here if needed
-    return $notification;
-}
+     public function store(Request $request)
+     {
+         $validator = Validator::make($request->all(), [
+             'title' => 'required',
+             'address' => 'required',
+             'participants' => 'required',
+             'warningTime' => 'required',
+             'description' => 'required',
+             'date_execution' => 'required|date',
+             'date_notice' => 'required|date',
+         ], [
+             'title.required' => 'O campo titulo de Aviso é obrigatório ',
+             'address.required' => 'O campo Local de Realização é obrigatório ',
+             'participants.required' => 'O campo Participantes é obrigatório ',
+             'warningTime.required' => 'O campo Hora de Realização é obrigatório ',
+             'description.required' => 'O campo Descrição do aviso é obrigatório ',
+             'date_execution.required' => 'O campo Data de Realização é obrigatório ',
+             'date_notice.required' => 'O campo Data de Aviso é obrigatório ',
+         ]);
+     
+         if ($validator->fails()) {
+             return redirect()->back()->withErrors($validator)->withInput();
+         }
+     
+         $dateExecution = $request->input('date_execution');
+         $dateNotice = $request->input('date_notice');
+     
+         if ($dateNotice >= $dateExecution) {
+             return back()->with('msg', 'A data do Aviso nao pode ser superior a Data de Realização');
+         }
+     
+         $notificationData = [
+             'title' => $request->input('title'),
+             'address' => $request->input('address'),
+             'participants' => $request->input('participants'),
+             'warningTime' => $request->input('warningTime'),
+             'description' => $request->input('description'),
+             'date_execution' => $dateExecution,
+             'date_notice' => $dateNotice,
+         ];
+     
+         // Despacha o job para criar a notificação e enviar o e-mail em segundo plano
+         SendNotificationEmail::dispatch($notificationData);
+     
+         // Redireciona imediatamente
+         return redirect()->route('inbox.create')->with('msg', 'Successfully saved');
+     }
+     
      
 
     
