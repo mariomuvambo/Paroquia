@@ -79,9 +79,16 @@ class adminMinisterioController extends Controller
     public function show()
     {
         //
-        $detalhes = Ministerio::all();
+        $search = request('search');
+        if ($search) {
+            $detalhes = Ministerio::where([
+                ['nameMinister', 'like', '%' . $search . '%']
+            ])->get();
+        } else {
+            $detalhes = Ministerio::all();
+        }
 
-        return view ('/Ministerios/showMinisterios', compact('detalhes'));
+        return view('/Ministerios/showMinisterios', compact('detalhes', 'search'));
     }
 
     /**

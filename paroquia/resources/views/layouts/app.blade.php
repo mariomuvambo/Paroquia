@@ -26,6 +26,12 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
 
 
+    <!-- Adicione a referência ao Bootstrap Icons no cabeçalho do seu documento HTML -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.5.0/font/bootstrap-icons.min.css">
+
+<!-- Adicione a referência ao Bootstrap no cabeçalho do seu documento HTML -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
@@ -68,7 +74,7 @@
                                 <li><a class="dropdown-item" href="{{ route('adminministerios.create') }}">Adicionar</a></li>
                                 <li><a class="dropdown-item" href="{{ route('adminministerios.index') }}">Listar Ministérios</a></li>
                                 <li><hr class="dropdown-divider"></li>
-                                <li><a class="dropdown-item" href="{{ route('adminministerios.show') }}">Detalhes do Ministérios</a></li>
+                                <li><a class="dropdown-item" href="{{ route('adminministerios.show') }}">Detalhes do Ministérios</a></li> 
                                 <li><a class="dropdown-item" href="{{ route('Admin.show') }}">Registados nos Ministérios</a></li>
                             </ul>
                         </li>
@@ -85,12 +91,30 @@
                         <li class="nav-item">
                             <a class="nav-link active" aria-current="page" href="/dashboard">Home</a>
                         </li>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
+                                aria-expanded="false">Ministérios</a>
+                            <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="/Ministerios/showMinisterios">Lista de Ministérios</a></li>
+                                <li><a class="dropdown-item" href="{{ route('ministerio.createUser') }}">Registar-se</a></li>
+                                <li><hr class="dropdown-divider"></li>
+                                <li><a class="dropdown-item" href="{{ route('ministerio.show') }}">Registados</a></li>
+
+                               
+                        </li>
+
+                            </ul>
+                        </li>
+
                       
                         @endcan
 
                         <li class="nav-item">
                             <a class="nav-link disabled" aria-disabled="true">Disabled</a>
                         </li>
+
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button"
                                 aria-expanded="false">Aniversariantes</a>

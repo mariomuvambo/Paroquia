@@ -26,8 +26,9 @@ class notifyAvisosController extends Controller
     {
         $user = Auth::user();
         $notifications = $user->notifications;
-    
-        return view('Inbox.read', compact('notifications'));
+        $readNotifications = $user->readNotifications()->paginate(2);
+
+        return view('Inbox.read', compact('notifications', 'readNotifications'));
     }
     
     public function markAsRead( $id)
@@ -35,13 +36,16 @@ class notifyAvisosController extends Controller
         if($id){
             auth()->user()->notifications->where('id', $id)->markAsRead();
         }
-        return back();
+        return back(); 
     }
 
     public function allRead(){
-        auth()->user()->unreadNotifications->markAsRead();
+        auth()->user()->unreadNotifications->markAsRead(); 
         return back();
     }
+
+
+
     
     
     /**

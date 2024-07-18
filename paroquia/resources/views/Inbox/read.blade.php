@@ -32,8 +32,13 @@
             </div> 
             @endforelse
 
-            <!-- Mostrar notificações lidas -->
-            @forelse(Auth::user()->readNotifications as $notification)
+            
+            
+
+            
+        <div class="row">
+            <!-- Notificações Lidas -->
+            @forelse($readNotifications as $notification)
             <div class="col-md-6 mb-3">
                 <div class="card card-custom">
                     <div class="card-body">
@@ -49,6 +54,19 @@
             </div>
             @empty
             @endforelse
+
+            <!-- Links de paginação para notificações lidas -->
+            <div class="d-flex justify-content-center">
+                {{ $readNotifications->links() }}
+            </div>
+
+            
+
+
+
+        </div>
+    </div>
+
         </div>
     </div>
     @endsection
