@@ -3,13 +3,13 @@
     @section('title', 'Create notificação')
     @section('content')
     <div>
-        <h2 id="subtitulo">Notificaçoes</h2>
+        <h2 id="subtitulo">Notificações</h2>
     </div>
     <hr style="margin-bottom: 15px;">
 
     <div class="container">
         <a style="margin-bottom: 10px;" class="btn btn-info" href="{{ route('notifications.allRead')}}">Marcar todos como lido</a>
-        
+
         <div class="row">
             @forelse(Auth::user()->unreadNotifications as $notification)
             <div class="col-md-6 mb-3">
@@ -29,45 +29,37 @@
             @empty
             <div style="margin-bottom: 10px;" class="w-full py-2 px-5 border border-yellow-400 bg-yellow-100 text-yellow-100">
                 <p style="color: red;">Sem Notificação ....</p><br>
-            </div> 
+            </div>
             @endforelse
 
-            
-            
 
-            
-        <div class="row">
-            <!-- Notificações Lidas -->
-            @forelse($readNotifications as $notification)
-            <div class="col-md-6 mb-3">
-                <div class="card card-custom">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ $notification->data['title'] }}</h5>
-                        <p class="card-text"><strong>Participantes:</strong> {{ $notification->data['participants'] }}</p>
-                        <p class="card-text"><strong>Local:</strong> {{ $notification->data['address'] }}</p>
-                        <p class="card-text"><strong>Descrição:</strong> {{ $notification->data['description'] }}</p>
-                        <p class="card-text"><strong>Data de Execução:</strong> {{ $notification->data['date_execution'] }}</p>
-                        <p class="card-text"><strong>Data de Aviso:</strong> {{ $notification->data['date_notice'] }}</p>
-                        <p class="card-text"><strong>Horário:</strong> {{ $notification->data['warningTime'] }}</p>
+            <div class="row">
+                <!-- Notificações Lidas -->
+                @forelse($readNotifications as $notification)
+                <div class="col-md-6 mb-3">
+                    <div class="card card-custom">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ $notification->data['title'] }}</h5>
+                            <p class="card-text"><strong>Participantes:</strong> {{ $notification->data['participants'] }}</p>
+                            <p class="card-text"><strong>Local:</strong> {{ $notification->data['address'] }}</p>
+                            <p class="card-text"><strong>Descrição:</strong> {{ $notification->data['description'] }}</p>
+                            <p class="card-text"><strong>Data de Execução:</strong> {{ $notification->data['date_execution'] }}</p>
+                            <p class="card-text"><strong>Data de Aviso:</strong> {{ $notification->data['date_notice'] }}</p>
+                            <p class="card-text"><strong>Horário:</strong> {{ $notification->data['warningTime'] }}</p>
+                        </div>
                     </div>
                 </div>
+                @empty
+                @endforelse
+
+                <!-- Links de paginação para notificações lidas -->
+                <div class="d-flex justify-content-center">
+                    {{ $readNotifications->links() }}
+                </div>
+
             </div>
-            @empty
-            @endforelse
-
-            <!-- Links de paginação para notificações lidas -->
-            <div class="d-flex justify-content-center">
-                {{ $readNotifications->links() }}
-            </div>
-
-            
-
-
-
         </div>
     </div>
-
-        </div>
     </div>
     @endsection
 </x-app-layout>

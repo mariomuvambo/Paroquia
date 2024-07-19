@@ -45,6 +45,13 @@ Route::middleware([
     Route::put('/Admin/{aniversariante}/update', [adminController::class, 'update'])->name('Admin.update');
     Route::delete('/Admin/{aniversariante}', [adminController::class, 'destroy'])->name('Admin.destroy');
     Route::get('/Admin/show', [adminController::class, 'show'])->name('Admin.show');
+
+    Route::get('/Admin/ministerios/print',[adminController::class, 'printMinisterios'])->name('adminministerios.print');
+
+
+
+
+
     
 // ROUTA PARA ANIVERSARIANTES
     // Route::get('/Aniversariantes/create',[aniversarianteController::class,'create'])->name('aniversariantes.create');
@@ -64,6 +71,9 @@ Route::middleware([
     Route::get('/Ministerios/{id}/editarMinisterios', [adminMinisterioController::class, 'edit'])->name('adminministerios.edit');
     Route::put('/Ministerios/{id}/update', [adminMinisterioController::class, 'update'])->name('adminministerios.update');
     Route::get('/Ministerios/showMinisterios', [adminMinisterioController::class, 'show'])->name('adminministerios.show');
+
+  
+
 
     /* User Ministerios */
       Route::get('Ministerios/RegistarUser', [userMinisterioController::class, 'create'])->name('ministerio.createUser');

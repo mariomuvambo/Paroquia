@@ -63,11 +63,23 @@ class adminController extends Controller
      */
     public function show()
     {
-        //
-        $ministerios = UserMinisterio::all();
-        return view ('Ministerios.listaRegistados',compact('ministerios'));
-        
+        $ministerios = UserMinisterio::paginate(5); // Paginação com 3 ministérios por página
+        return view('Ministerios.listaRegistados', compact('ministerios'));
+
+
     }
+    public function printMinisterios()
+    {
+        // Busca todos os ministérios
+        $ministerios = UserMinisterio::all();
+
+        // Agrupa ministérios por selecioneMinisterio
+        $ministeriosAgrupados = $ministerios->groupBy('selecioneMinisterio');
+
+        return view('admin.print', compact('ministeriosAgrupados'));
+    }
+
+       
 
     /**
      * Show the form for editing the specified resource.

@@ -26,7 +26,7 @@ class notifyAvisosController extends Controller
     {
         $user = Auth::user();
         $notifications = $user->notifications;
-        $readNotifications = $user->readNotifications()->paginate(2);
+        $readNotifications = $user->readNotifications()->paginate(4);
 
         return view('Inbox.read', compact('notifications', 'readNotifications'));
     }
