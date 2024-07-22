@@ -9,7 +9,6 @@
     </div>
     <hr style="margin-bottom: 15px;">
 
-
     <div class="container">
 
         <div class="container">
@@ -33,7 +32,6 @@
             @if($search)
             <h1 style="margin:10px;">Pesquisado por: {{ $search  }}</h1>
             @else
-            <h2> Pesquisa nao encontrada</h2>
             @endif
 
             @foreach($detalhes as $detalhes)

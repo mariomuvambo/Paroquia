@@ -1,0 +1,57 @@
+/* Remove qualquer fundo indesejado */
+body {
+  background-color: #f8f9fa; /* Cor neutra para o fundo da página */
+}
+
+/* Ajusta o fundo e o estilo do container do formulário */
+.container {
+  padding: 20px;
+  border-radius: 8px;
+  background-color: #ffffff; /* Fundo branco para o container do formulário */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Sombra leve para dar profundidade */
+}
+
+/* Estiliza o título centralizado */
+.text-center h2 {
+  color: #343a40; /* Cor escura para o texto */
+  font-weight: bold;
+  font-size: 24px; /* Tamanho maior para destacar o título */
+  margin-bottom: 15px; /* Espaçamento abaixo do título */
+}
+
+/* Estiliza a linha horizontal */
+hr {
+  border: 2px solid #343a40; /* Linha escura e mais grossa */
+  margin-bottom: 30px; /* Espaçamento abaixo da linha */
+}
+
+/* Ajusta os rótulos dos campos de formulário */
+.form-label,
+.form-floating label {
+  font-weight: bold;
+  color: #343a40; /* Cor escura para o texto */
+}
+
+/* Estiliza os campos de texto */
+.form-control {
+  border-radius: 4px; /* Bordas arredondadas para os campos de texto */
+}
+
+/* Estiliza o botão */
+.btn-outline-primary {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: #ffffff;
+  border-radius: 4px; /* Bordas arredondadas para o botão */
+}
+
+.btn-outline-primary:hover {
+  background-color: #0056b3;
+  border-color: #004085;
+  color: #ffffff;
+}
+
+/* Remove a borda arredondada do botão quando não estiver focado */
+.btn-outline-primary:focus {
+  box-shadow: none; /* Remove o efeito de foco */
+}

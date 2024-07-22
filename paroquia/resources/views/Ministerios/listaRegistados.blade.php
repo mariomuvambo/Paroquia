@@ -7,7 +7,7 @@
   <div class="container mt-4">
     <div class="text-center mb-4">
       <h2 id="subtitulo" >Registados nos Ministérios</h2>
-    </div>
+    </div> 
     <hr style="margin-bottom: 15px;">
 
     <div class="d-flex justify-content-end mb-3">

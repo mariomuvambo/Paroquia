@@ -10,7 +10,6 @@
         </div>
         <hr style="margin-bottom: 15px;">
 
-        <hr style="margin-bottom: 15px;">
 
 
         <form action="/Aniversariantes" method="POST" enctype="multipart/form-data">
